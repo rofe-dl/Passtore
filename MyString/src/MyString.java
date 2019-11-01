@@ -86,7 +86,10 @@ public class MyString implements Comparable<MyString>{
         return newString;
     }
 
-    public boolean equals(MyString a){
+    @Override
+    public boolean equals(Object x){
+        if (!(x instanceof MyString)) return false;
+        MyString a = (MyString) x;
         if (a.length() != this.length()) return false;
 
         for (int i = 0; i < this.length(); i++){
