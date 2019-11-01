@@ -29,46 +29,61 @@ public class MyString {
         return true;
     }
 
-    public void replaceFirst(char a, char b){
-        for (int i = 0; i < this.length(); i++){
-            if (this.charAt(i) == a){
-                this.c[i] = b;
+    public MyString replaceFirst(char a, char b){
+        MyString newString = new MyString(this.toString());
+        for (int i = 0; i < newString.length(); i++){
+            if (newString.charAt(i) == a){
+                newString.c[i] = b;
                 break;
             }
         }
+
+        return newString;
     }
 
-    public void replaceAll(char a, char b){
-        for (int i = 0; i < this.length(); i++){
-            if (this.charAt(i) == a){
-                this.c[i] = b;
+    public MyString replaceAll(char a, char b){
+        MyString newString = new MyString(this.toString());
+        for (int i = 0; i < newString.length(); i++){
+            if (newString.charAt(i) == a){
+                newString.c[i] = b;
             }
         }
+
+        return newString;
     }
 
-    public void replaceLast(char a, char b){
-        for (int i = this.length() - 1; i >= 0; i--){
-            if (this.charAt(i) == a){
-                this.c[i] = b;
+    public MyString replaceLast(char a, char b){
+        MyString newString = new MyString(this.toString());
+        for (int i = newString.length() - 1; i >= 0; i--){
+            if (newString.charAt(i) == a){
+                newString.c[i] = b;
                 break;
             }
         }
+
+        return newString;
     }
 
-    public void toLowerCase(){
-        for (int i = 0; i < this.length(); i++){
-            if (this.c[i] >= 65 && this.c[i] <= 90){
-                this.c[i] += 32;
+    public MyString toLowerCase(){
+        MyString newString = new MyString(this.toString());
+        for (int i = 0; i < newString.length(); i++){
+            if (newString.c[i] >= 65 && newString.c[i] <= 90){
+                newString.c[i] += 32;
             }
         }
+
+        return newString;
     }
 
-    public void toUpperCase(){
-        for (int i = 0; i < this.length(); i++){
-            if (this.c[i] >= 97 && this.c[i] <= 122){
-                this.c[i] -= 32;
+    public MyString toUpperCase(){
+        MyString newString = new MyString(this.toString());
+        for (int i = 0; i < newString.length(); i++){
+            if (newString.c[i] >= 97 && newString.c[i] <= 122){
+                newString.c[i] -= 32;
             }
         }
+
+        return newString;
     }
 
     public boolean equals(MyString a){
@@ -79,6 +94,16 @@ public class MyString {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString(){
+        String s = "";
+        for (char i : this.c){
+            s += i;
+        }
+
+        return s;
     }
 
     public boolean contains(char[] a){
@@ -98,34 +123,39 @@ public class MyString {
         return false;
     }
 
-    public  void trim(){
-        int startIndex = 0, endIndex = this.length() - 1, emptySpaces = 0;
+    public  MyString trim(){
+        MyString newString = new MyString(this.toString());
+        int startIndex = 0, endIndex = newString.length() - 1, emptySpaces = 0;
 
-        for (int i = 0; i < this.length(); i++){
-            if (this.c[i] != ' '){
+        for (int i = 0; i < newString.length(); i++){
+            if (newString.c[i] != ' '){
                 startIndex = i;
                 break;
             }else emptySpaces++;
         }
 
-        for (int i = this.length() - 1; i >= 0; i--){
-            if (this.c[i] != ' '){
+        for (int i = newString.length() - 1; i >= 0; i--){
+            if (newString.c[i] != ' '){
                 endIndex = i;
                 break;
             }
             else emptySpaces++;
         }
 
-        char[] newC = new char[this.length() - emptySpaces];
+        char[] newC = new char[newString.length() - emptySpaces];
 
         for (int i = 0; startIndex <= endIndex; startIndex++, i++){
-            newC[i] = this.c[startIndex];
+            newC[i] = newString.c[startIndex];
         }
 
-        this.c = newC;
+        newString.c = newC;
+
+        return newString;
     }
 
     public boolean equalsIgnoreCase(MyString s){
-
+        MyString newString = this.toLowerCase(), newString2 = s.toLowerCase();
+        if (newString.equals(newString2)) return true;
+        return false;
     }
 }
