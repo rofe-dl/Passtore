@@ -166,6 +166,86 @@ public class MyString implements Comparable<MyString>{
     }
 
     public MyString substring(int n){
-        
+        MyString newString = new MyString(this.toString());
+        char[] newC = new char[this.c.length - n];
+
+        for (int i = 0; i < newC.length; i++, n++){
+            newC[i] = newString.charAt(n);
+        }
+
+        newString.c = newC;
+
+        return newString;
+    }
+
+    public MyString substring(int n, int m){
+        MyString newString = new MyString(this.toString());
+        char[] newC = new char[m - n];
+
+        for (int i = 0; i < newC.length; i++, n++){
+            newC[i] = newString.charAt(n);
+        }
+
+        newString.c = newC;
+        return newString;
+    }
+
+    public int indexOf(char c){
+        for (int i = 0; i < this.length(); i++){
+            if (this.charAt(i) == c) return i;
+        }
+
+        return -1;
+    }
+
+    public int lastIndexOf(char c){
+
+        for (int i = this.length() - 1; i >= 0; i--){
+            if (this.charAt(i) == c) return i;
+        }
+
+        return -1;
+    }
+
+    public int indexOf(char c, int x){
+
+        for (int i = x; i < this.length(); i++){
+            if (this.charAt(i) == c) return i;
+        }
+
+        return -1;
+    }
+
+    public int lastIndexOf(char c, int x){
+
+        for (int i = x; i >= 0; i--){
+            if (this.charAt(i) == c) return i;
+        }
+
+        return -1;
+    }
+
+    public MyString concat (MyString s){
+        char[] newC = new char[this.length() + s.length()];
+        int i = 0;
+        for (char c : this.c){
+            newC[i] = c;
+            i++;
+        }
+
+        for (char c : s.c){
+            newC[i] = c;
+            i++;
+        }
+
+        MyString newString = new MyString(" ");
+        newString.c = newC;
+
+        return newString;
+    }
+
+    public boolean isEmpty(){
+        if (this.length() == 0) return true;
+        return false;
     }
 }
