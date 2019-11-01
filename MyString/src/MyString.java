@@ -1,4 +1,4 @@
-public class MyString {
+public class MyString implements Comparable<MyString>{
     char[] c;
 
     public MyString(String s){
@@ -21,9 +21,9 @@ public class MyString {
         return true;
     }
 
-    public boolean endsWith(MyString prefix){
-        for (int i = prefix.length() - 1, j = this.length() - 1; i >= 0; i--, j--){
-            if (c[j] != prefix.charAt(i)) return false;
+    public boolean endsWith(MyString suffix){
+        for (int i = suffix.length() - 1, j = this.length() - 1; i >= 0; i--, j--){
+            if (c[j] != suffix.charAt(i)) return false;
         }
 
         return true;
@@ -98,12 +98,7 @@ public class MyString {
 
     @Override
     public String toString(){
-        String s = "";
-        for (char i : this.c){
-            s += i;
-        }
-
-        return s;
+        return new String(this.c);
     }
 
     public boolean contains(char[] a){
@@ -157,5 +152,20 @@ public class MyString {
         MyString newString = this.toLowerCase(), newString2 = s.toLowerCase();
         if (newString.equals(newString2)) return true;
         return false;
+    }
+
+    @Override
+    public int compareTo(MyString s){
+        return this.c[0] - s.c[0];
+    }
+
+    public int compareToIgnoreCase(MyString s){
+        MyString x = this.toLowerCase(), y = s.toLowerCase();
+
+        return x.compareTo(y);
+    }
+
+    public MyString substring(int n){
+        
     }
 }
