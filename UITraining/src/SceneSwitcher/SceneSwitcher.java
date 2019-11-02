@@ -9,12 +9,15 @@ import javafx.event.*;
 
 public class SceneSwitcher extends Application{
 
+    //Adder variables
     Label whatWillBeAdded, calcResult;
     Button btnAddA, btnSubA, btnAddB, btnSubB, calculate, switchToCounter;
     int a = 0, b = 0, result = a + b;
 
+    //Counter variables
     Label counterLabel;
-    Button btnUp, switchToAdder;
+    Button btnUp, btnDown, switchToAdder;
+    int c = 0;
 
     Stage stage;
 
@@ -22,7 +25,7 @@ public class SceneSwitcher extends Application{
     public void start(Stage primaryStage){
         stage = primaryStage;//so the stage is accessible in private methods
 
-        // CODE DEALING WITH ADDER SOFTWARE
+        /////////////////////// CODE DEALING WITH ADDER SOFTWARE
 
         whatWillBeAdded = new Label("You will add " + a + " and " + b);//initializes labels
         calcResult = new Label("Calculation: " + result);
@@ -56,15 +59,30 @@ public class SceneSwitcher extends Application{
                 calcResult.setText("Calculation: " + result);
             }
         });
+        /////////////////////////////////////
 
         // CODE DEALING WITH COUNTER SOFTWARE
+        counterLabel = new Label(String.valueOf(c));
+        btnUp = new Button("Increase"); btnDown = new Button("Decrease"); switchToAdder = new Button("Switch !");
+
+        btnUp.setOnAction(e -> increase()); btnDown.setOnAction(e -> decrease());
+        HBox box2 = new HBox(10); box2.setPadding(new Insets(15));
+        box2.getChildren().addAll(switchToAdder, btnUp, btnDown, counterLabel);
+
+        Scene scene2 = new Scene(box2, 300, 50);
 
 
+        switchToAdder.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e){
+                stage.setScene(scene);
+            }
+        });
 
         switchToCounter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //stage.setScene();
+                stage.setScene(scene2);
             }
         });
 
@@ -88,6 +106,16 @@ public class SceneSwitcher extends Application{
     private void decreaseB(){
         b--;
         whatWillBeAdded.setText("You will add " + a + " and " + b);
+    }
+
+    private void increase(){
+        c++;
+        counterLabel.setText(String.valueOf(c));
+    }
+
+    private void decrease(){
+        c--;
+        counterLabel.setText(String.valueOf(c));
     }
 
     public static void main(String[] args) {
