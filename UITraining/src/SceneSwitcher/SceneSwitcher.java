@@ -6,6 +6,7 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.*;
+import commonboxes.ConfirmationBox;
 
 public class SceneSwitcher extends Application{
 
@@ -36,7 +37,8 @@ public class SceneSwitcher extends Application{
         switchToCounter = new Button("Switch !");
 
         HBox buttons = new HBox(15);//creates the hbox that will hold line of buttons
-        Region spacer1 = new Region(), spacer2 = new Region(); HBox.setHgrow(spacer1, Priority.ALWAYS); HBox.setHgrow(spacer2, Priority.ALWAYS);//creates growing regions
+        Region spacer1 = new Region(), spacer2 = new Region(); HBox.setHgrow(spacer1, Priority.ALWAYS); //creates growing regions
+        HBox.setHgrow(spacer2, Priority.ALWAYS);
         buttons.getChildren().addAll(spacer1, btnAddA, btnSubA, btnAddB, btnSubB, spacer2);//adds the regions and buttons to the hbox
 
         //creates borderpanes for other nodes
@@ -44,7 +46,7 @@ public class SceneSwitcher extends Application{
                 new BorderPane(switchToCounter));
 
         box.setPadding(new Insets(10));
-        Scene scene = new Scene(box, 500, 190);
+        Scene scene = new Scene(box, 250, 190);
 
         stage.setScene(scene); stage.setResizable(false);
         stage.setTitle("Scene Switcher");
@@ -75,14 +77,16 @@ public class SceneSwitcher extends Application{
         switchToAdder.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
-                stage.setScene(scene);
+                if(ConfirmationBox.yesOrNo("Are you sure you want to switch?"))
+                    stage.setScene(scene);
             }
         });
 
         switchToCounter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                stage.setScene(scene2);
+                if(ConfirmationBox.yesOrNo("Are you sure you want to switch?"))
+                    stage.setScene(scene2);
             }
         });
 
