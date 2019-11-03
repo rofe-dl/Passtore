@@ -1,11 +1,12 @@
-package files;
+package passtorefiles;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class FileReaderAndEditor{
+
+    /*
 
     //Method returns the arraylist of master accounts extracted from the file
     public static ArrayList<MasterAccount> getUpdatedMasterAccounts(){
@@ -94,4 +95,6 @@ public class FileReaderAndEditor{
             System.out.println(System.lineSeparator() + "Failed to save.");
         }
     }
+
+     */
 }

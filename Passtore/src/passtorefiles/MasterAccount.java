@@ -1,12 +1,14 @@
-package files;
+package passtorefiles;
 import java.io.Serializable;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.TreeMap;
 import java.util.Iterator;
 
 public class MasterAccount implements Serializable{
 
+
+
+
+    /*
     public String username, password;
     public ArrayList<Account> accounts = new ArrayList<Account>();
     //Scanner is passed to every method as it is not serilizable so it's obtained from the main class everytime the program runs and is passed around
@@ -15,12 +17,7 @@ public class MasterAccount implements Serializable{
         this.username = username;
         this.password = password;
     }
-    //first method that runs from the Main class
-    public void introduction(Scanner reader){
-        System.out.println();
-        System.out.println("HELLO " + this.username.toUpperCase() + " !");
-        menu(reader);
-    }
+
 
     public void menu(Scanner reader){
 
@@ -63,20 +60,6 @@ public class MasterAccount implements Serializable{
     }
 
     //sorts the accounts by site names and displays them with an index number
-    public void sortAndListAccounts(Scanner reader){
-
-        Collections.sort(accounts);
-        int count = 1;//Refreshes the index numbers of all the accounts
-        for (Account i : this.accounts){
-            i.index = count;
-            count++;
-        }
-        System.out.println();
-        for (Account i : this.accounts){
-            System.out.println(i);
-        }
-        System.out.println();
-    }
 
     //Method to add a new account to this master account
     public void addAccount(Scanner reader){
@@ -245,6 +228,6 @@ public class MasterAccount implements Serializable{
             }
         }
         FileReaderAndEditor.updateMasterAccounts(updatedMasterAccounts);
-    }
+    }*/
 
 }
