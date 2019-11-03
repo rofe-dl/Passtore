@@ -37,19 +37,32 @@ public class SceneSwitcher extends Application{
         switchToCounter = new Button("Switch !");
 
         HBox buttons = new HBox(15);//creates the hbox that will hold line of buttons
-        Region spacer1 = new Region(), spacer2 = new Region(); HBox.setHgrow(spacer1, Priority.ALWAYS); //creates growing regions
+        Region spacer1 = new Region(), spacer2 = new Region(); //creates growing regions
+        HBox.setHgrow(spacer1, Priority.ALWAYS);
         HBox.setHgrow(spacer2, Priority.ALWAYS);
         buttons.getChildren().addAll(spacer1, btnAddA, btnSubA, btnAddB, btnSubB, spacer2);//adds the regions and buttons to the hbox
 
         //creates borderpanes for other nodes
-        VBox box = new VBox(15); box.getChildren().addAll(new BorderPane(whatWillBeAdded), buttons, new BorderPane(calculate), new BorderPane(calcResult),
+        VBox box = new VBox(15);
+        box.getChildren().addAll(new BorderPane(whatWillBeAdded), buttons, new BorderPane(calculate), new BorderPane(calcResult),
                 new BorderPane(switchToCounter));
 
         box.setPadding(new Insets(10));
         Scene scene = new Scene(box, 250, 190);
 
-        stage.setScene(scene); stage.setResizable(false);
+        stage.setScene(scene);
+        stage.setResizable(false);
         stage.setTitle("Scene Switcher");
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {//Prompts whether user really wants to close
+            @Override
+            public void handle(WindowEvent event) {
+                if (ConfirmationBox.yesOrNo("Are you sure you want to close?")){
+                    stage.close();
+                }
+
+                event.consume(); //by default, after setOnCloseRequest javafx automatically closes stage after event ends, so event has to be consumed
+            }
+        });
         stage.show();
 
         btnAddA.setOnAction(e -> increaseA()); btnSubA.setOnAction(e -> decreaseA());//sets the functions for the buttons
