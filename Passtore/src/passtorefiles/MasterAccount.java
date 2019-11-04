@@ -1,24 +1,23 @@
 package passtorefiles;
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.TreeMap;
-import java.util.Map;
+import java.util.TreeSet;
 import java.util.Iterator;
 
 public class MasterAccount implements Serializable, Comparable<MasterAccount> {
 
-    private Map<String, Account> accountsList;
+    private TreeSet<Account> accountsList;
     private String name, password;
 
     
     public MasterAccount(String name, String password){
-        this.accountsList = new TreeMap<>();
+        this.accountsList = new TreeSet<Account>();
         this.name = name;
         this.password = password;
 
     }
 
-    public Map<String, Account> getAccountsList(){
+    public TreeSet<Account> getAccountsList(){
         return this.accountsList;
     }
 
