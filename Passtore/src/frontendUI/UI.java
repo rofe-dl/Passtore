@@ -8,6 +8,8 @@ import javafx.scene.layout.*;
 import javafx.scene.text.*;
 import javafx.stage.*;
 import logic.Passtore;
+import passtorefiles.FileReaderAndEditor;
+import passtorefiles.MasterAccount;
 
 public class UI extends Application{
 
@@ -77,7 +79,22 @@ public class UI extends Application{
     }
 
     public void login(){
-        //Passtore.login(nameEntered, passwordEntered);
+
+        if(masterUsernameField.getText().isEmpty()){
+            MessageBox.giveMessage("Username field is empty! Please enter a name", "Username Error");
+            masterUsernameField.requestFocus();
+            return;
+        }else if (!FileReaderAndEditor.masterAccountExists(masterUsernameField.getText())){
+            MessageBox.giveMessage("No such username exists. Please enter the correct name", "Username Error");
+            masterUsernameField.requestFocus();
+            return;
+        }else if (!Passtore.loginIsSuccess(masterUsernameField.getText(), masterPasswordField.getText())){
+            MessageBox.giveMessage("Password is incorrect.", "Wrong Password");
+            masterPasswordField.requestFocus();
+            return;
+        }
+
+        Passtore.login();
     }
 
     public void addNewMasterAccount(){
@@ -85,10 +102,3 @@ public class UI extends Application{
     }
 }
 
-//Enum of passwordwrong, passwordmismatch
-//Make FileReaderAndEditor
-//Opening stage has login, create master account, list master accounts
-//FileReaderAndEditor checks if name exists
-//if exists, check if password correct, logs you in
-//Create master account checks if master account with similar name exists
-//Adds new master account

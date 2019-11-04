@@ -1,19 +1,33 @@
 package passtorefiles;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.TreeMap;
 import java.util.Map;
 import java.util.Iterator;
 
-public class MasterAccount implements Serializable{
+public class MasterAccount implements Serializable, Comparable<MasterAccount> {
 
     private Map<String, Account> accountsList;
     private String name, password;
+
     
     public MasterAccount(String name, String password){
         this.accountsList = new TreeMap<>();
         this.name = name;
         this.password = password;
 
+    }
+
+    public Map<String, Account> getAccountsList(){
+        return this.accountsList;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public void addAccount(Account a, String site){
@@ -36,6 +50,21 @@ public class MasterAccount implements Serializable{
         this.password = newPassword;
     }
 
+    @Override
+    public int compareTo(MasterAccount a){
+        return this.name.toLowerCase().compareTo(a.name.toLowerCase());
+    }
+
+    @Override
+    public boolean equals(Object e){
+        if (!(e instanceof MasterAccount)) return false;
+
+        MasterAccount a = (MasterAccount)e;
+
+        if(this.name.equals(a.name)) return true;
+
+        return false;
+    }
 
     /*
     public String username, password;

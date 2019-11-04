@@ -9,17 +9,14 @@ import javafx.geometry.*;
 
 public class MessageBox {
 
-    static Stage stage;
 
     public static void giveMessage(String message, String title){
-
-
-        stage = new Stage();
+        Stage stage = new Stage();
         stage.setTitle(title);
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        Button okButton = new Button("OK");
+        Button okButton = new Button("   OK   ");
 
         okButton.setOnAction(new EventHandler<ActionEvent>(){
             @Override
@@ -31,10 +28,10 @@ public class MessageBox {
         Label text = new Label(message);
 
         HBox okRow = new HBox(20, okButton);
-        okRow.setAlignment(Pos.CENTER);
+        okRow.setAlignment(Pos.BOTTOM_RIGHT);
 
         VBox mainPane = new VBox(25, text, okRow);
-        mainPane.setAlignment(Pos.CENTER);
+        mainPane.setAlignment(Pos.TOP_RIGHT);
         mainPane.setPadding(new Insets(20, 60, 20 ,60));
 
         stage.setScene(new Scene(mainPane));

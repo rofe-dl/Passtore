@@ -15,7 +15,6 @@ public class ConfirmationBox {
 
     public static boolean yesOrNo(String message){
 
-
         stage = new Stage();
         stage.setTitle("Confirmation Box");
         stage.setResizable(false);
