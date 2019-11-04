@@ -9,4 +9,8 @@ import passtorefiles.*;
 //FileReaderAndEditor is a tool made up of static methods used for different purposes
 public class Passtore {
 
+    public static void createNewMasterAccount(){
+
+    }
+
 }

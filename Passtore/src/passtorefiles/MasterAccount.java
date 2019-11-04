@@ -1,11 +1,40 @@
 package passtorefiles;
 import java.io.Serializable;
 import java.util.TreeMap;
+import java.util.Map;
 import java.util.Iterator;
 
 public class MasterAccount implements Serializable{
 
+    private Map<String, Account> accountsList;
+    private String name, password;
 
+    public MasterAccount(String name, String password){
+        this.accountsList = new TreeMap<>();
+        this.name = name;
+        this.password = password;
+
+    }
+
+    public void addAccount(Account a, String site){
+        this.accountsList.put(site, a);
+    }
+
+    public void removeAccount(String site){
+        this.accountsList.remove(site);
+    }
+
+    public Account getAccountDetails(String site){
+        return this.accountsList.get(site);
+    }
+
+    public boolean changeMasterPasswordRequest(String password){
+        return this.password.equals(password);
+    }
+
+    public void changeMasterPassword(String newPassword){
+        this.password = newPassword;
+    }
 
 
     /*

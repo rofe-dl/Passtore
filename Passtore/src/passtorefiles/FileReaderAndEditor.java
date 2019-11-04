@@ -1,10 +1,27 @@
 package passtorefiles;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.ArrayList;
 
 public class FileReaderAndEditor{
+    static FileInputStream in;
+    static ObjectInputStream objectIn;
+    static ArrayList<MasterAccount> masterAccountsList;
+
+    public static ArrayList<MasterAccount> getUpdatedMasterAccountsList(){
+        try {
+            in = new FileInputStream("savefile.ser");
+            objectIn = new ObjectInputStream(in);
+            masterAccountsList = (ArrayList<MasterAccount>) objectIn.readObject();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return masterAccountsList;
+    }
+
+
+
 
     /*
 

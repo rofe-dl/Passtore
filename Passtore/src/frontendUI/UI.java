@@ -42,14 +42,14 @@ public class UI extends Application{
         Label username = new Label("Username"), password = new Label("Password");//creates label for username and password
 
         masterUsernameField = new TextField(); masterUsernameField.setPromptText("Name"); masterUsernameField.setPrefWidth(380); //sets username and password fields
-        masterPasswordField = new PasswordField(); masterPasswordField.setPromptText("Password"); masterPasswordField.setPrefWidth(382);
+        masterPasswordField = new PasswordField(); masterPasswordField.setPromptText("Password"); masterPasswordField.setPrefWidth(380);
 
         this.nameEntered = masterUsernameField.getText();
         this.passwordEntered = masterPasswordField.getText();
 
         HBox signInRow = new HBox(signIn);
         HBox usernameRow = new HBox(15);
-        HBox passwordRow = new HBox(18);
+        HBox passwordRow = new HBox(16);
         HBox loginButtonRow = new HBox(loginButton);
 
         signInRow.setPadding(new Insets(0,0,0,25));
@@ -67,6 +67,7 @@ public class UI extends Application{
         mainPane.getChildren().addAll(welcome, signInRow, usernameRow, passwordRow, loginButtonRow, bottomButtons);
 
         loginButton.setOnAction(e -> this.login());
+        createMasterAccountButton.setOnAction((e -> this.addNewMasterAccount()));
 
         openingScene = new Scene(mainPane, 510, 330);
         stage.setScene(openingScene);
@@ -75,8 +76,12 @@ public class UI extends Application{
         stage.show();
     }
 
-    private void login(){
+    public void login(){
         //Passtore.login(nameEntered, passwordEntered);
+    }
+
+    public void addNewMasterAccount(){
+        MasterAccountCreationUI.start();
     }
 }
 
