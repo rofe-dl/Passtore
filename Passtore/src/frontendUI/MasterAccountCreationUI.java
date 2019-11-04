@@ -52,10 +52,15 @@ public class MasterAccountCreationUI {
     }
 
     private static void addNewMasterAccount(){
+        if(usernameField.getText().isEmpty()){
+            MessageBox.giveMessage("Username field is empty! Please enter a name.", "Error");
+            return;
+        }
         if (!passwordField.getText().equals(confirmPasswordField.getText())){
             MessageBox.giveMessage("The passwords don't match!", "Error");
             return;
         }
+
 
 
     }

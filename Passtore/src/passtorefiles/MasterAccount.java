@@ -8,7 +8,7 @@ public class MasterAccount implements Serializable{
 
     private Map<String, Account> accountsList;
     private String name, password;
-
+    
     public MasterAccount(String name, String password){
         this.accountsList = new TreeMap<>();
         this.name = name;

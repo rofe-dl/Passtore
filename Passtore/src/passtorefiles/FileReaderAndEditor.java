@@ -5,19 +5,54 @@ import java.util.ArrayList;
 public class FileReaderAndEditor{
     static FileInputStream in;
     static ObjectInputStream objectIn;
+    static FileOutputStream out;
+    static ObjectOutputStream objectOut;
+
     static ArrayList<MasterAccount> masterAccountsList;
+
+    public static void initializeStreams(){
+        try{
+            out = new FileOutputStream("savefile.sav");
+            objectOut = new ObjectOutputStream(out);
+            in = new FileInputStream("savefile.sav");
+            objectIn = new ObjectInputStream(in);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<MasterAccount> getUpdatedMasterAccountsList(){
         try {
-            in = new FileInputStream("savefile.ser");
-            objectIn = new ObjectInputStream(in);
+//            in = new FileInputStream("savefile.sav");
+//            objectIn = new ObjectInputStream(in);
             masterAccountsList = (ArrayList<MasterAccount>) objectIn.readObject();
-
+//            in.close(); objectIn.close();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            masterAccountsList = new ArrayList<MasterAccount>();
+            try{
+                out = new FileOutputStream("savefile.sav");
+                objectOut = new ObjectOutputStream(out);
+                objectOut.writeObject(masterAccountsList);
+
+            }catch (Exception e){
+                System.out.println("Failed to write to file");
+            }
+
         }
 
         return masterAccountsList;
+    }
+
+    public static void updateMasterAccountsList(ArrayList<MasterAccount> a){
+        try{
+            out = new FileOutputStream("savefile.sav");
+            objectOut = new ObjectOutputStream(out);
+            objectOut.writeObject(a);
+
+        }catch (Exception e){
+            System.out.println("Failed to write to file");
+        }
     }
 
 
