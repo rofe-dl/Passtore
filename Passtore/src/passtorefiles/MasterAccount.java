@@ -30,16 +30,14 @@ public class MasterAccount implements Serializable, Comparable<MasterAccount> {
     }
 
     public void addAccount(Account a, String site){
-        this.accountsList.put(site, a);
+
     }
 
     public void removeAccount(String site){
         this.accountsList.remove(site);
     }
 
-    public Account getAccountDetails(String site){
-        return this.accountsList.get(site);
-    }
+
 
     public boolean changeMasterPasswordRequest(String password){
         return this.password.equals(password);
