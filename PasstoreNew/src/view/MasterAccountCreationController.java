@@ -1,6 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
 import javafx.stage.*;
 import javafx.scene.control.*;
 import mainapp.Passtore;
@@ -13,10 +14,10 @@ public class MasterAccountCreationController {
     private TextField usernameField;
 
     @FXML
-    private PasswordField  confirmPasswordField;
+    private PasswordField passwordField;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField  confirmPasswordField;
 
     @FXML
     private Button signUpButton;
@@ -40,7 +41,11 @@ public class MasterAccountCreationController {
 
     @FXML
     private void initialize(){
-
+        signUpButton.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)){
+                signUpButton.fire();
+            }
+        });
     }
 
     public void setStage(Stage stage){

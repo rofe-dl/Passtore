@@ -38,9 +38,9 @@
             <children>
                 <Label contentDisplay="CENTER" text="Username" />
                 <Label text="Password" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="1" />
-                <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button mnemonicParsing="false" text="Sign In" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="masterUsernameField" GridPane.columnIndex="1" />
+                <PasswordField fx:id="masterPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="signInButton" mnemonicParsing="false" onAction="#handleSignInButton" text="Sign In" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <ButtonBar prefHeight="50.0" prefWidth="356.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <buttons>
                         <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#handleSignUpButton" text="Sign up" />

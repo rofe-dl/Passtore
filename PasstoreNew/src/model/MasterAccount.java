@@ -64,6 +64,10 @@ public class MasterAccount implements Comparable<MasterAccount>, Serializable{
         return false;
     }
 
+    public boolean equals(String username, String password){
+        return (this.getPassword().equals(password) && this.getUsername().equals(username));
+    }
+
     /*
     public String username, password;
     public ArrayList<Account> accounts = new ArrayList<Account>();
