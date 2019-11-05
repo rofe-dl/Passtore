@@ -1,39 +1,39 @@
 package model;
 import java.io.Serializable;
-import java.util.TreeSet;
+import java.util.ArrayList;
 import javafx.beans.property.*;
 
-public class MasterAccount implements Comparable<MasterAccount> {
+public class MasterAccount implements Comparable<MasterAccount>, Serializable{
 
-    private TreeSet<Account> accountsList;
-    private StringProperty name, password;
+    private ArrayList<Account> accountsList;
+    private StringProperty username, password;
 
 
     public MasterAccount(String name, String password){
-        this.accountsList = new TreeSet<Account>();
-        this.name = new SimpleStringProperty(name);
+        this.accountsList = new ArrayList<Account>();
+        this.username = new SimpleStringProperty(name);
         this.password = new SimpleStringProperty(password);
 
     }
 
-    public TreeSet<Account> getAccountsList() {
+    public ArrayList<Account> getAccountsList() {
         return accountsList;
     }
 
-    public void setAccountsList(TreeSet<Account> accountsList) {
+    public void setAccountsList(ArrayList<Account> accountsList) {
         this.accountsList = accountsList;
     }
 
-    public String getName() {
-        return name.get();
+    public String getUsername() {
+        return username.get();
     }
 
-    public StringProperty nameProperty() {
-        return name;
+    public StringProperty usernameProperty() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name.set(name);
+    public void setUsername(String username) {
+        this.username.set(username);
     }
 
     public String getPassword() {
@@ -50,7 +50,7 @@ public class MasterAccount implements Comparable<MasterAccount> {
 
     @Override
     public int compareTo(MasterAccount a){
-        return this.getName().toLowerCase().compareTo(a.getName().toLowerCase());
+        return this.getUsername().toLowerCase().compareTo(a.getUsername().toLowerCase());
     }
 
     @Override
@@ -59,7 +59,7 @@ public class MasterAccount implements Comparable<MasterAccount> {
 
         MasterAccount a = (MasterAccount)e;
 
-        if(this.getName().equals(a.getName())) return true;
+        if(this.getUsername().equals(a.getUsername())) return true;
 
         return false;
     }
