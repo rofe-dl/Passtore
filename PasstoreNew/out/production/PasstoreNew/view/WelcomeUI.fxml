@@ -43,8 +43,8 @@
                 <Button fx:id="signInButton" mnemonicParsing="false" onAction="#handleSignInButton" text="Sign In" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <ButtonBar prefHeight="50.0" prefWidth="356.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <buttons>
-                        <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#handleSignUpButton" text="Sign up" />
-                        <Button fx:id="listMasterAccountsButton" mnemonicParsing="false" onAction="#handleListOfMasterAccountsButton" text="List Accounts" />
+                        <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#handleSignUpButton" text="Create Master Account" />
+                        <Button fx:id="listMasterAccountsButton" mnemonicParsing="false" onAction="#handleListOfMasterAccountsButton" text="List Master Accounts" />
                     </buttons>
                 </ButtonBar>
             </children>

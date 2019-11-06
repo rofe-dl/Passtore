@@ -6,61 +6,61 @@ import javafx.beans.property.*;
 
 public class Account implements Comparable<Account>, Serializable {
 
-    private StringProperty site, email, password, username;
+    private String site, email, password, username;
 
     public Account(String site, String email, String username, String password){
-        this.site = new SimpleStringProperty(site);
-        this.email = new SimpleStringProperty(email);
-        this.password = new SimpleStringProperty(password);
-        this.username = new SimpleStringProperty(username);
+        this.site = site;
+        this.email = email;
+        this.password = password;
+        this.username = username;
     }
 
     public void setSite(String site) {
-        this.site.set(site);
+        this.site = site;
     }
 
     public void setEmail(String email) {
-        this.email.set(email);
+        this.email = email;
     }
 
     public void setPassword(String password) {
-        this.password.set(password);
+        this.password = password;
     }
 
     public void setUsername(String username) {
-        this.username.set(username);
+        this.username = username;
     }
 
     public String getSite() {
-        return site.get();
+        return this.site;
     }
 
     public StringProperty siteProperty() {
-        return site;
+        return new SimpleStringProperty(this.site);
     }
 
     public String getEmail() {
-        return email.get();
+        return this.email;
     }
 
     public StringProperty emailProperty() {
-        return email;
+        return new SimpleStringProperty(this.email);
     }
 
     public String getPassword() {
-        return password.get();
+        return this.password;
     }
 
     public StringProperty passwordProperty() {
-        return password;
+        return new SimpleStringProperty(this.password);
     }
 
     public String getUsername() {
-        return username.get();
+        return this.username;
     }
 
     public StringProperty usernameProperty() {
-        return username;
+        return new SimpleStringProperty(this.username);
     }
 
     @Override

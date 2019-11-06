@@ -3,15 +3,14 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
 import mainapp.Handler;
 import mainapp.Passtore;
 
 public class WelcomeController {
-    private Stage stage;
+    private Passtore passtoreInstance;
 
-    public void setStage(Stage stage){
-        this.stage = stage;
+    public void setPasstoreInstance(Passtore passtoreInstance){
+        this.passtoreInstance = passtoreInstance;
     }
 
     @FXML
@@ -47,19 +46,18 @@ public class WelcomeController {
 
     @FXML
     private void handleSignInButton(){
-        if(!Handler.checkIfAccountExists(masterUsernameField.getText(), Passtore.getListOfMasterAccounts())){
+        if(!Handler.checkIfAccountExists( masterUsernameField.getText() )){
 
-            ShowDialogBox.showDialog(Alert.AlertType.ERROR, "No such username exists, please sign up","Username Not Found");
+            DialogBox.showError("No such username exists, please sign up","Username Not Found");
             return;
-        }else if(!Handler.checkIfPasswordMatches(masterUsernameField.getText(),
-                masterPasswordField.getText(),
-                Passtore.getListOfMasterAccounts())){
 
-            ShowDialogBox.showDialog(Alert.AlertType.ERROR, "Your password is incorrect","Wrong Password");
+        }else if(!Handler.checkIfPasswordMatches(masterUsernameField.getText(), masterPasswordField.getText())){
+
+            DialogBox.showError("Your password is incorrect","Wrong Password");
             return;
         }
 
-        new Passtore().showAccountUI(masterUsernameField.getText(), stage);
+        this.passtoreInstance.showAccountUI(masterUsernameField.getText());
     }
 
     @FXML

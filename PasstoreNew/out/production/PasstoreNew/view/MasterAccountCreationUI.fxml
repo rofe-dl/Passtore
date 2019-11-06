@@ -16,7 +16,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="523.0">
          <children>
-            <Label text="Account Creation">
+            <Label text="Master Account Creation">
                <font>
                   <Font size="24.0" />
                </font>

@@ -1,9 +1,8 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import mainapp.Passtore;
+import javafx.scene.control.*;
+import mainapp.Handler;
 import model.MasterAccount;
 
 public class AccountListController {
@@ -15,8 +14,7 @@ public class AccountListController {
 
     @FXML
     private void initialize(){
-        masterAccountTableView.setItems(Passtore.getListOfMasterAccounts());
+        masterAccountTableView.setItems(Handler.getMasterAccountsList());
         usernameColumn.setCellValueFactory(e -> e.getValue().usernameProperty());
-
     }
 }

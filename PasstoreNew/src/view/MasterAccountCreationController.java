@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.stage.*;
 import javafx.scene.control.*;
-import mainapp.Passtore;
+import mainapp.*;
 import model.MasterAccount;
 
 public class MasterAccountCreationController {
@@ -25,16 +25,19 @@ public class MasterAccountCreationController {
     @FXML
     private void handleSignUpButton(){
         if (usernameField.getText().isEmpty()){
-            ShowDialogBox.showDialog(Alert.AlertType.ERROR, "Username cannot be empty",
-                    "Invalid Username");
+            DialogBox.showError("Username cannot be empty","Invalid Username");
             return;
         }else if(!passwordField.getText().equals(confirmPasswordField.getText())){
-            ShowDialogBox.showDialog(Alert.AlertType.ERROR, "Your passwords don't match",
-                    "Password Mismatch");
+            DialogBox.showError("Your passwords don't match","Password Mismatch");
+            return;
+        }else if(Handler.checkIfAccountExists( this.usernameField.getText() )){
+            DialogBox.showError("Username already exists! Please try another","Username Exists");
             return;
         }
 
-        Passtore.getListOfMasterAccounts().add(new MasterAccount(usernameField.getText(), passwordField.getText()));
+        Handler.getMasterAccountsList().add(new MasterAccount(usernameField.getText(), passwordField.getText()));
+        Handler.saveToFile();
+
         this.stage.close();
 
     }
