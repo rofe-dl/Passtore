@@ -2,25 +2,27 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class MasterAccount implements Comparable<MasterAccount>, Serializable{
 
-    private ArrayList<Account> accountsList;
+    private ObservableList<Account> accountsList;
     private StringProperty username, password;
 
 
     public MasterAccount(String name, String password){
-        this.accountsList = new ArrayList<Account>();
+        this.accountsList = FXCollections.observableArrayList();
         this.username = new SimpleStringProperty(name);
         this.password = new SimpleStringProperty(password);
 
     }
 
-    public ArrayList<Account> getAccountsList() {
+    public ObservableList<Account> getAccountsList() {
         return accountsList;
     }
 
-    public void setAccountsList(ArrayList<Account> accountsList) {
+    public void setAccountsList(ObservableList<Account> accountsList) {
         this.accountsList = accountsList;
     }
 
@@ -64,9 +66,10 @@ public class MasterAccount implements Comparable<MasterAccount>, Serializable{
         return false;
     }
 
-    public boolean equals(String username, String password){
+    public boolean checkIfPasswordMatches(String username, String password){
         return (this.getPassword().equals(password) && this.getUsername().equals(username));
     }
+
 
     /*
     public String username, password;

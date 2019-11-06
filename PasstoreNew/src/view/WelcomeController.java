@@ -1,16 +1,18 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
 import mainapp.Handler;
 import mainapp.Passtore;
 
 public class WelcomeController {
-//    private Passtore programInstance;
+    private Stage stage;
+
+    public void setStage(Stage stage){
+        this.stage = stage;
+    }
 
     @FXML
     private void initialize(){
@@ -56,6 +58,8 @@ public class WelcomeController {
             ShowDialogBox.showDialog(Alert.AlertType.ERROR, "Your password is incorrect","Wrong Password");
             return;
         }
+
+        new Passtore().showAccountUI(masterUsernameField.getText(), stage);
     }
 
     @FXML

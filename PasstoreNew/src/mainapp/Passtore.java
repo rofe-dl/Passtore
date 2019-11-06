@@ -18,25 +18,33 @@ public class Passtore extends Application{
         return listOfMasterAccounts;
     }
 
+    private Stage workingStage;
     @Override
     public void start(Stage primaryStage){
-        Stage stage = primaryStage;
-        primaryStage.setTitle("Passtore");
+
+        this.workingStage = primaryStage;
+        workingStage.setTitle("Passtore");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/WelcomeUI.fxml"));
-        VBox mainPane;
+        WelcomeController controller = loader.getController();
 
+
+        MasterAccount rofedl = new MasterAccount("u", "p");
+        rofedl.getAccountsList().add(new Account("si", "em", "us", "p"));
         listOfMasterAccounts.add(new MasterAccount("Hoo", "lol"));
-        listOfMasterAccounts.add(new MasterAccount("Rofedl", "lol"));
+        listOfMasterAccounts.add(rofedl);
+
 
         try{
-            mainPane = (VBox) loader.load();
-            primaryStage.setScene(new Scene(mainPane));
-            primaryStage.setResizable(false);
-            primaryStage.show();
+            VBox mainPane = (VBox) loader.load();
+            controller.setStage(this.workingStage);
+            workingStage.setScene(new Scene(mainPane));
+            workingStage.setResizable(false);
+            workingStage.show();
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     public void showAccountListUI(){
@@ -76,6 +84,26 @@ public class Passtore extends Application{
 
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void showAccountUI(String masterUsername, Stage workingStage){
+        MasterAccount e = getListOfMasterAccounts().get(Handler.login(masterUsername));
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/AccountUI.fxml"));
+        try{
+            Scene scene = new Scene((AnchorPane)loader.load());
+            this.workingStage = workingStage;
+            this.workingStage.setScene(scene);
+
+            this.workingStage.setTitle("@" + e.getUsername());
+
+            AccountController controller = loader.getController();
+            controller.setCurrentAccountAndStage(e,this.workingStage);
+
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 

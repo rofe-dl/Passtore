@@ -2,13 +2,14 @@ package mainapp;
 
 import javafx.collections.ObservableList;
 import model.MasterAccount;
+import java.util.Collections;
 
 public class Handler {
     public static boolean checkIfPasswordMatches(String masterUsername,
                                                  String masterPassword,
                                                  ObservableList<MasterAccount> e){
         for (MasterAccount i : e){
-            if (i.equals(masterUsername, masterPassword)) return true;
+            if (i.checkIfPasswordMatches(masterUsername, masterPassword)) return true;
         }
 
         return false;
@@ -16,10 +17,17 @@ public class Handler {
 
     public static boolean checkIfAccountExists(String masterUsername,
                                                ObservableList<MasterAccount> e){
-        for (MasterAccount i : e){
-            if (i.getUsername().equals(masterUsername)) return true;
-        }
+        Collections.sort(Passtore.getListOfMasterAccounts());
+        int x = Collections.binarySearch(Passtore.getListOfMasterAccounts(), new MasterAccount(masterUsername,""));
 
-        return false;
+        return (x >= 0)? true : false;
+    }
+
+    public static int login(String username){
+        Collections.sort(Passtore.getListOfMasterAccounts());
+
+        int x = Collections.binarySearch(Passtore.getListOfMasterAccounts(), new MasterAccount(username,""));
+
+        return x;
     }
 }
