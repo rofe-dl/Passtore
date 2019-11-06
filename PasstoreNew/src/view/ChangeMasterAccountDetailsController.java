@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import mainapp.*;
 import model.*;
 
-public class ChangeAccountDetailsController {
+public class ChangeMasterAccountDetailsController {
 
     Stage stage;
     MasterAccount currentMasterAccount;

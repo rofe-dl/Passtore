@@ -12,11 +12,11 @@ public class MasterAccount implements Comparable<MasterAccount>, Serializable {
     public MasterAccount(String name, String password) {
         this.username = name;
         this.password = password;
-        accountsList = new ArrayList<Account>();
+        this.accountsList = new ArrayList<Account>();
     }
 
     public ObservableList<Account> getAccountsList() {
-        return FXCollections.observableArrayList(accountsList);
+        return FXCollections.observableArrayList(this.accountsList);
     }
 
     public ArrayList<Account> getAccountsListAsArrayList(){

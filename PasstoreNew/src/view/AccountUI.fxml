@@ -16,7 +16,7 @@
         <menus>
           <Menu fx:id="accountMenu" mnemonicParsing="false" text="Master Account">
             <items>
-                  <MenuItem fx:id="changeAccountDetailsItem" mnemonicParsing="false" onAction="#handleChangeAccountDetailsItem" text="Change master account details" />
+                  <MenuItem fx:id="changeMasterAccountDetailsItem" mnemonicParsing="false" onAction="#handleChangeMasterAccountDetailsItem" text="Change master account details" />
                   <MenuItem fx:id="deleteMasterAccountItem" mnemonicParsing="false" onAction="#handleDeleteMasterAccountItem" text="Delete this master account" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="logoutItem" mnemonicParsing="false" onAction="#handleLogoutItem" text="Logout" />

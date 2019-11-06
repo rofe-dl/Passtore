@@ -41,7 +41,7 @@ public class AccountController {
     private Menu accountMenu;
 
     @FXML
-    private MenuItem changeAccountDetailsItem;
+    private MenuItem changeMasterAccountDetailsItem;
     @FXML
     private MenuItem deleteMasterAccountItem;
     @FXML
@@ -56,8 +56,8 @@ public class AccountController {
     }
 
     @FXML
-    private void handleChangeAccountDetailsItem(){
-        this.passtoreInstance.showChangeAccountDetailsUI(this.masterAccount);
+    private void handleChangeMasterAccountDetailsItem(){
+        this.passtoreInstance.showChangeMasterAccountDetailsUI(this.masterAccount);
         this.stage.setTitle("@" + this.masterAccount.getUsername());
     }
 
@@ -89,7 +89,17 @@ public class AccountController {
 
     @FXML
     private void handleEditAccountButton(){
+        if (this.accountTableView.getSelectionModel().getSelectedIndex() == -1) {
+            DialogBox.showDialog("You haven't selected any account", "No Account Selected");
+            return;
+        }
+        int index = this.accountTableView.getSelectionModel().getSelectedIndex();
+        Account account = this.masterAccount.getAccountsListAsArrayList().get(index);
+        this.passtoreInstance.showEditAccountDetailsUI(account);
 
+        Handler.updateThisMasterAccount(this.masterAccount);
+
+        assignListToTable(this.masterAccount);
     }
 
     @FXML

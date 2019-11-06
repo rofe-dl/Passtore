@@ -71,9 +71,9 @@ public class Passtore extends Application{
 
     }
 
-    public void showChangeAccountDetailsUI(MasterAccount currentAccount){
+    public void showChangeMasterAccountDetailsUI(MasterAccount currentAccount){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/ChangeAccountDetailsUI.fxml"));
+        loader.setLocation(getClass().getResource("/view/ChangeMasterAccountDetailsUI.fxml"));
         try{
             Scene scene = new Scene((VBox)loader.load());
             Stage stage = new Stage();
@@ -83,7 +83,7 @@ public class Passtore extends Application{
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
 
-            ChangeAccountDetailsController controller = loader.getController();
+            ChangeMasterAccountDetailsController controller = loader.getController();
             controller.setStage(stage);
             controller.setMasterAccount(currentAccount);
             stage.getIcons().add(new Image("/view/ico.png"));
@@ -158,6 +158,30 @@ public class Passtore extends Application{
 
         }catch (Exception ex){
             ex.printStackTrace();
+        }
+    }
+
+    public void showEditAccountDetailsUI(Account account){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/EditAccountDetailsUI.fxml"));
+        try{
+            Scene scene = new Scene((VBox)loader.load());
+            Stage stage = new Stage();
+
+            stage.setResizable(false);
+            stage.setTitle("Edit Account");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+
+            EditAccountDetailsController controller = loader.getController();
+            controller.setStage(stage);
+            controller.setAccount(account);
+
+            stage.getIcons().add(new Image("/view/ico.png"));
+            stage.showAndWait();
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
