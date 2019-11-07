@@ -15,23 +15,31 @@ import view.*;
 public class Passtore extends Application{
 
     public static void main(String[] args) {
-        launch(args); //Calls the init(), then start() in extended Application
+        launch(args); //Calls the init(), then start() from parent class
     }
 
     /**First method that automatically gets called in Application after main**/
     @Override
     public void init(){
         Handler.initializeFromSaveFile();
+
+        for(MasterAccount i : Handler.getMasterAccountsList()){
+            i.deserializeIntoProperty();
+            for (Account j : i.getAccountsList()){
+                j.deserializeIntoProperty();
+            }
+        }
     }
 
     private Stage workingStage;
+    private static FXMLLoader loader;
 
     /**Program starts**/
     @Override
     public void start(Stage primaryStage){
 
         this.workingStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/WelcomeUI.fxml"));
 
         try{
@@ -52,7 +60,7 @@ public class Passtore extends Application{
     }
 
     public void showAccountListUI(){
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/AccountListUI.fxml"));
         try{
             Scene scene = new Scene((VBox)loader.load());
@@ -72,7 +80,7 @@ public class Passtore extends Application{
     }
 
     public void showChangeMasterAccountDetailsUI(MasterAccount currentAccount){
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/ChangeMasterAccountDetailsUI.fxml"));
         try{
             Scene scene = new Scene((VBox)loader.load());
@@ -95,7 +103,7 @@ public class Passtore extends Application{
     }
 
     public void showAddAccountUI(MasterAccount masterAccount){
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/AddAccountUI.fxml"));
         try{
             Scene scene = new Scene((VBox)loader.load());
@@ -118,7 +126,7 @@ public class Passtore extends Application{
     }
 
     public void showMasterAccountCreationUI(){
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/MasterAccountCreationUI.fxml"));
         try{
             Scene scene = new Scene((VBox)loader.load());
@@ -143,7 +151,7 @@ public class Passtore extends Application{
         int indexOfThatAccount = Handler.login(masterUsername);
         MasterAccount e = Handler.getMasterAccountsList().get(indexOfThatAccount);
 
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/AccountUI.fxml"));
         try{
             Scene scene = new Scene((AnchorPane)loader.load());
@@ -151,6 +159,8 @@ public class Passtore extends Application{
             controller.setCurrentAccountAndStage(e, workingStage);
             controller.setPasstoreInstance(this);
 
+            workingStage.setMinHeight(300);
+            workingStage.setMinWidth(600);
             workingStage.setResizable(true);
             workingStage.setScene(scene);
             workingStage.setTitle("@" + e.getUsername());
@@ -162,7 +172,7 @@ public class Passtore extends Application{
     }
 
     public void showEditAccountDetailsUI(Account account){
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/EditAccountDetailsUI.fxml"));
         try{
             Scene scene = new Scene((VBox)loader.load());

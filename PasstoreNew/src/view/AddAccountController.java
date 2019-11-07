@@ -38,7 +38,8 @@ public class AddAccountController {
             return;
         }
 
-        this.currentMasterAccount.getAccountsListAsArrayList().add( new Account ( site.getText(),  email.getText(), username.getText(), password.getText() ) );
+        this.currentMasterAccount.getAccountsList().add( new Account ( site.getText(),  email.getText(), username.getText(), password.getText() ) );
+        this.currentMasterAccount.getAccountsArrayList().add( new Account ( site.getText(),  email.getText(), username.getText(), password.getText() ) );
 
         Handler.updateThisMasterAccount(this.currentMasterAccount);
 

@@ -14,6 +14,18 @@ public class WelcomeController {
     }
 
     @FXML
+    private TextField masterUsernameField;
+
+    @FXML
+    private PasswordField masterPasswordField;
+
+    @FXML
+    private Button listMasterAccountsButton,  signUpButton;
+
+    @FXML
+    private Button signInButton;
+
+    @FXML
     private void initialize(){
         signUpButton.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)){
@@ -31,18 +43,6 @@ public class WelcomeController {
             }
         });
     }
-
-    @FXML
-    private TextField masterUsernameField;
-
-    @FXML
-    private PasswordField masterPasswordField;
-
-    @FXML
-    private Button listMasterAccountsButton,  signUpButton;
-
-    @FXML
-    private Button signInButton;
 
     @FXML
     private void handleSignInButton(){

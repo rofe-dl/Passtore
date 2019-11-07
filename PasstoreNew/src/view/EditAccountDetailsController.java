@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import model.Account;
 
@@ -23,7 +24,11 @@ public class EditAccountDetailsController {
 
     @FXML
     private void initialize(){
-
+        editButton.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)){
+                editButton.fire();
+            }
+        });
     }
 
     @FXML

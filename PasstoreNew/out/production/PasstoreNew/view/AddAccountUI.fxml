@@ -13,7 +13,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="479.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddAccountController">
    <children>
-      <Label text="Add Account">
+      <Label focusTraversable="false" text="Add Account">
          <font>
             <Font size="24.0" />
          </font>
@@ -30,17 +30,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Site" />
-            <Label text="Email" GridPane.rowIndex="1" />
-            <Label text="Username" GridPane.rowIndex="2" />
-            <Label text="Password" GridPane.rowIndex="3" />
+            <Label focusTraversable="false" text="Site" />
+            <Label focusTraversable="false" text="Email" GridPane.rowIndex="1" />
+            <Label focusTraversable="false" text="Username" GridPane.rowIndex="2" />
+            <Label focusTraversable="false" text="Password" GridPane.rowIndex="3" />
             <TextField fx:id="site" prefWidth="344.0" GridPane.columnIndex="1" />
             <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar focusTraversable="false" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleAddButton" text="Add" />
         </buttons>

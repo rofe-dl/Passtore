@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import mainapp.Handler;
 import mainapp.Passtore;
@@ -53,6 +54,22 @@ public class AccountController {
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
         usernameColumn.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
         passwordColumn.setCellValueFactory(cellData -> cellData.getValue().passwordProperty());
+
+        addAccountButton.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)){
+                addAccountButton.fire();
+            }
+        });
+        removeAccountButton.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)){
+                removeAccountButton.fire();
+            }
+        });
+        editAccountButton.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)){
+                editAccountButton.fire();
+            }
+        });
     }
 
     @FXML
@@ -81,9 +98,8 @@ public class AccountController {
         boolean delete = DialogBox.showConfirmation("Are you sure you want to remove this account?", "Removal Confirmation");
         if (delete){
             int index = this.accountTableView.getSelectionModel().getSelectedIndex();
-            this.masterAccount.getAccountsListAsArrayList().remove(index);
+            this.masterAccount.getAccountsList().remove(index);
             Handler.updateThisMasterAccount(this.masterAccount);
-            assignListToTable(this.masterAccount);
         }
     }
 
@@ -94,11 +110,10 @@ public class AccountController {
             return;
         }
         int index = this.accountTableView.getSelectionModel().getSelectedIndex();
-        Account account = this.masterAccount.getAccountsListAsArrayList().get(index);
+        Account account = this.masterAccount.getAccountsList().get(index);
         this.passtoreInstance.showEditAccountDetailsUI(account);
 
         Handler.updateThisMasterAccount(this.masterAccount);
-        assignListToTable(this.masterAccount);
     }
 
     @FXML

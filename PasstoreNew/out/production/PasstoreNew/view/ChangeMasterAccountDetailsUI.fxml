@@ -16,7 +16,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="523.0">
          <children>
-            <Label text="Change Master Account Details">
+            <Label focusTraversable="false" text="Change Master Account Details">
                <font>
                   <Font size="24.0" />
                </font>
@@ -34,12 +34,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Username" />
-            <Label text="Password" GridPane.rowIndex="1" />
-            <Label text="Confirm Password" GridPane.rowIndex="2" />
+            <Label focusTraversable="false" text="Username" />
+            <Label focusTraversable="false" text="Password" GridPane.rowIndex="1" />
+            <Label focusTraversable="false" text="Confirm Password" GridPane.rowIndex="2" />
             <TextField fx:id="usernameField" GridPane.columnIndex="1" />
-            <PasswordField fx:id="confirmPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="confirmPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="55.0" prefWidth="523.0">
