@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="PasstoreNew:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/PasstoreNew_jar</output-path>
-    <root id="archive" name="PasstoreNew.jar">
-      <element id="module-output" name="PasstoreNew" />
-    </root>
-  </artifact>
-</component>
