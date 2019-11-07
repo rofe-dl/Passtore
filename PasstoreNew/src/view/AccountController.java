@@ -98,7 +98,6 @@ public class AccountController {
         this.passtoreInstance.showEditAccountDetailsUI(account);
 
         Handler.updateThisMasterAccount(this.masterAccount);
-
         assignListToTable(this.masterAccount);
     }
 
@@ -106,6 +105,7 @@ public class AccountController {
     private void handleAddAccountButton(){
         this.passtoreInstance.showAddAccountUI(this.masterAccount);
         assignListToTable(this.masterAccount);
+
     }
 
     @FXML
@@ -120,7 +120,7 @@ public class AccountController {
     }
 
     private void assignListToTable(MasterAccount masterAccount){
-        accountTableView.setItems(masterAccount.getAccountsList());
+        this.accountTableView.setItems(masterAccount.getAccountsList());
     }
 
     public void setPasstoreInstance(Passtore passtoreInstance){

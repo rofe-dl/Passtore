@@ -28,7 +28,7 @@ public class Handler {
         return (x >= 0)? true : false;
     }
 
-    /*****returns index number in the list of the account of given username*****/
+    /*****returns index number of the username from the list of master accounts*****/
     public static int login(String masterUsername){
         int x = Collections.binarySearch(masterAccountsList, new MasterAccount(masterUsername,""));
 
