@@ -7,12 +7,13 @@ import mainapp.Handler;
 import mainapp.Passtore;
 
 public class WelcomeController {
-    private Passtore passtoreInstance;
 
+    private Passtore passtoreInstance;
     public void setPasstoreInstance(Passtore passtoreInstance){
         this.passtoreInstance = passtoreInstance;
     }
 
+    /** Items annotated @FXML means the the fxml file can access them**/
     @FXML
     private TextField masterUsernameField;
 
@@ -25,6 +26,7 @@ public class WelcomeController {
     @FXML
     private Button signInButton;
 
+    /** First method that gets called when a controller file's respective fxml is loaded **/
     @FXML
     private void initialize(){
         signUpButton.setOnKeyPressed(e -> {
@@ -44,6 +46,7 @@ public class WelcomeController {
         });
     }
 
+    /** methods starting with handle in these controllers shows the function that gets called when the button is pressed **/
     @FXML
     private void handleSignInButton(){
         if(!Handler.checkIfAccountExists( masterUsernameField.getText() )){
@@ -62,14 +65,12 @@ public class WelcomeController {
 
     @FXML
     private void handleSignUpButton(){
-        new Passtore().showMasterAccountCreationUI();
+        this.passtoreInstance.showMasterAccountCreationUI();
     }
 
     @FXML
     private void handleListOfMasterAccountsButton(){
-        new Passtore().showAccountListUI();
+        this.passtoreInstance.showAccountListUI();
     }
-
-
 
 }

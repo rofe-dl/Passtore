@@ -4,8 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import mainapp.Handler;
-import mainapp.Passtore;
+import mainapp.*;
 import model.*;
 
 public class AccountController {
@@ -50,6 +49,7 @@ public class AccountController {
 
     @FXML
     private void initialize(){
+        /** sets the property each column will represent **/
         siteColumn.setCellValueFactory(cellData -> cellData.getValue().siteProperty());
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
         usernameColumn.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
@@ -111,6 +111,7 @@ public class AccountController {
         }
         int index = this.accountTableView.getSelectionModel().getSelectedIndex();
         Account account = this.masterAccount.getAccountsList().get(index);
+
         this.passtoreInstance.showEditAccountDetailsUI(account);
 
         Handler.updateThisMasterAccount(this.masterAccount);
@@ -119,8 +120,6 @@ public class AccountController {
     @FXML
     private void handleAddAccountButton(){
         this.passtoreInstance.showAddAccountUI(this.masterAccount);
-        assignListToTable(this.masterAccount);
-
     }
 
     @FXML
@@ -131,12 +130,9 @@ public class AccountController {
     public void setCurrentAccountAndStage(MasterAccount e, Stage stage){
         this.masterAccount = e;
         this.stage = stage;
-        assignListToTable(e);
-    }
-
-    private void assignListToTable(MasterAccount masterAccount){
         this.accountTableView.setItems(masterAccount.getAccountsList());
     }
+
 
     public void setPasstoreInstance(Passtore passtoreInstance){
         this.passtoreInstance = passtoreInstance;

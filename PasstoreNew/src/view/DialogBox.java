@@ -1,14 +1,12 @@
 package view;
 
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
+import javafx.stage.*;
 import java.util.Optional;
 
+/** CLASS I MADE USED TO SHOW COMMON DIALOG BOXES WITH FLEXIBLE MESSAGES **/
 public class DialogBox {
     public static void showError(String message, String title){
         Alert alert = new Alert(Alert.AlertType.ERROR);

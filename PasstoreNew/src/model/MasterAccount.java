@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import javafx.beans.property.*;
 import javafx.collections.*;
 
+/** structure of a master account **/
 public class MasterAccount implements Comparable<MasterAccount>, Serializable {
+
+    /** Each variable has it's own property variable
+     * Property variables are the ones displayed on gui as they can show live changes
+     *  Property variables aren't serializable, so marked transient
+     *  String variables are the ones that get serialized**/
 
     private ArrayList<Account> accountsList;
     private String username, password;
@@ -22,6 +28,7 @@ public class MasterAccount implements Comparable<MasterAccount>, Serializable {
         this.pAccountsList = FXCollections.observableArrayList();
     }
 
+    /**  Creates the property objects from it's respective string at the start of the program **/
     public void deserializeIntoProperty(){
         this.pUsername = new SimpleStringProperty(this.username);
         this.pPassword = new SimpleStringProperty(this.password);
@@ -32,6 +39,7 @@ public class MasterAccount implements Comparable<MasterAccount>, Serializable {
         return this.pAccountsList;
     }
 
+    //same as above method, but returns the arraylist
     public ArrayList<Account> getAccountsArrayList(){
         return this.accountsList;
     }
@@ -55,7 +63,7 @@ public class MasterAccount implements Comparable<MasterAccount>, Serializable {
 
     public StringProperty passwordProperty() {
         return this.pPassword;
-    }
+    } //never really used but eh let's keep it
 
     public void setPassword(String password) {
         this.password = password;
@@ -64,7 +72,7 @@ public class MasterAccount implements Comparable<MasterAccount>, Serializable {
 
     @Override
     public int compareTo(MasterAccount a) {
-        return this.getUsername().toLowerCase().compareTo(a.getUsername().toLowerCase());
+        return this.getUsername().toLowerCase().compareTo(a.getUsername().toLowerCase()); //sorts by username
     }
 
     @Override
