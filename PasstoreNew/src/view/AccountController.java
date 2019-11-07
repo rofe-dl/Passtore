@@ -85,7 +85,7 @@ public class AccountController {
             Handler.getMasterAccountsList().remove(this.masterAccount);
             DialogBox.showDialog("You will now be logged out", "Logging Out");
             Handler.saveToFile();
-            this.passtoreInstance.start(this.stage);
+            handleLogoutItem();
         }
     }
 
@@ -124,7 +124,10 @@ public class AccountController {
 
     @FXML
     private void handleLogoutItem(){
-        this.passtoreInstance.start(this.stage);
+        /** A new stage is passed instead of it's current one as current one may have been resized manually causing welcome screen to not retain intended size**/
+        Stage newStage = new Stage();
+        this.stage.close();
+        this.passtoreInstance.start(newStage);
     }
 
     public void setCurrentAccountAndStage(MasterAccount e, Stage stage){
