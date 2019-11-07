@@ -60,7 +60,7 @@ public class Tester {
 
         System.out.println();
 
-        ArrayList<MyString> list = new ArrayList<MyString>(); list.add(new MyString("Ball")); list.add(new MyString("Apple")); list.add(new MyString("apple"));
+        ArrayList<MyString> list = new ArrayList<MyString>(); list.add(new MyString("Ball")); list.add(new MyString("Apple")); list.add(new MyString("apple")); list.add(new MyString("Appm"));
         for (MyString i : list) System.out.println(i);
         System.out.println();
         Collections.sort(list);//compareTo

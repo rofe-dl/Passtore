@@ -159,7 +159,25 @@ public class MyString implements Comparable<MyString>{
 
     @Override
     public int compareTo(MyString s){
-        return this.c[0] - s.c[0];
+        int shorterString = Math.min(this.length(), s.length());
+        int result = 0;
+        for (int i = 0; i < shorterString; i++){
+            if (this.charAt(i) != s.charAt(i)){
+                result = this.charAt(i) - s.charAt(i);
+                break;
+            }
+        }
+
+        if (result == 0){
+            if(this.length() > s.length()){
+                return 1;
+            }else if (this.length() < s.length()){
+                return -1;
+            }
+        }
+
+
+        return result;
     }
 
     public int compareToIgnoreCase(MyString s){
