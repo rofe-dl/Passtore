@@ -32,13 +32,13 @@ public class ChangeMasterAccountDetailsController {
         }else if(!passwordField.getText().equals(confirmPasswordField.getText())){
             DialogBox.showError("Your passwords don't match","Password Mismatch");
             return;
-        }else if(Handler.checkIfAccountExists( this.usernameField.getText() ) && !this.usernameField.getText().equals(currentMasterAccount.getUsername())){
+        }else if(Handler.checkIfAccountExists( this.usernameField.getText().trim() ) && !this.usernameField.getText().trim().equals(currentMasterAccount.getUsername())){
             DialogBox.showError("Username already exists! Please try another","Username Exists");
             return;
         }
 
         this.currentMasterAccount.setPassword(this.passwordField.getText());
-        this.currentMasterAccount.setUsername(this.usernameField.getText());
+        this.currentMasterAccount.setUsername(this.usernameField.getText().trim());
 
         Handler.updateThisMasterAccount(this.currentMasterAccount);
 

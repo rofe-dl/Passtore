@@ -8,6 +8,7 @@ import model.*;
 import javafx.scene.control.*;
 
 public class AddAccountController {
+
     private MasterAccount currentMasterAccount;
     private Stage stage;
 
