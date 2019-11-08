@@ -99,6 +99,7 @@ public class AccountController {
         if (delete){
             int index = this.accountTableView.getSelectionModel().getSelectedIndex();
             this.masterAccount.getAccountsList().remove(index);
+            this.masterAccount.getAccountsArrayList().remove(index);
             Handler.updateThisMasterAccount(this.masterAccount);
         }
     }
