@@ -24,7 +24,7 @@ public class MasterAccountCreationController {
 
     @FXML
     private void handleSignUpButton(){
-        if (usernameField.getText().isEmpty()){
+        if (usernameField.getText().trim().isEmpty()){
             DialogBox.showError("Username cannot be empty","Invalid Username");
             return;
         }else if(!passwordField.getText().equals(confirmPasswordField.getText())){

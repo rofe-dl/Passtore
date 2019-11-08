@@ -33,7 +33,7 @@ public class AddAccountController {
 
     @FXML
     private void handleAddButton(){
-        if (username.getText().isEmpty() && site.getText().isEmpty() && email.getText().isEmpty() && password.getText().isEmpty()){
+        if (username.getText().trim().isEmpty() && site.getText().trim().isEmpty() && email.getText().trim().isEmpty() && password.getText().trim().isEmpty()){
             DialogBox.showError("At least one of the fields must have some value", "Empty Fields");
             return;
         }
