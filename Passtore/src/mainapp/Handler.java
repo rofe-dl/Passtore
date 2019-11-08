@@ -54,6 +54,7 @@ public class Handler {
             ObjectOutputStream objectOut = new ObjectOutputStream(out);
             objectOut.writeObject( new ArrayList<MasterAccount>(masterAccountsList) ); //observable list converted to arraylist, as the former isn't serializable
             objectOut.flush(); out.flush();
+            objectOut.close(); out.close();
 
         }catch (IOException e){
             System.out.println("Failed to write to file for some reason. You sure you got permission to edit" +
@@ -69,6 +70,8 @@ public class Handler {
 
             ArrayList<MasterAccount> arrayListExtracted = (ArrayList<MasterAccount>) objectIn.readObject();
             masterAccountsList = FXCollections.observableArrayList(arrayListExtracted); //converts extracted arraylist into an observablelist
+            in.close(); objectIn.close();
+            
         } catch (Exception e) {
 
             masterAccountsList = FXCollections.observableArrayList(); //if no save file, a new one is created
