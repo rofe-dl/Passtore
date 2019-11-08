@@ -38,8 +38,11 @@ public class AddAccountController {
             return;
         }
 
+
         this.currentMasterAccount.getAccountsList().add( new Account ( site.getText(),  email.getText(), username.getText(), password.getText() ) );
+        //^ adds to observable list
         this.currentMasterAccount.getAccountsArrayList().add( new Account ( site.getText(),  email.getText(), username.getText(), password.getText() ) );
+        // ^adds to actual arraylist to get serialized later
 
         Handler.updateThisMasterAccount(this.currentMasterAccount);
 

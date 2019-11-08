@@ -98,8 +98,11 @@ public class AccountController {
         boolean delete = DialogBox.showConfirmation("Are you sure you want to remove this account?", "Removal Confirmation");
         if (delete){
             int index = this.accountTableView.getSelectionModel().getSelectedIndex();
-            this.masterAccount.getAccountsList().remove(index);
-            this.masterAccount.getAccountsArrayList().remove(index);
+            Account account = this.masterAccount.getAccountsList().get(index);
+
+            this.masterAccount.getAccountsList().remove(account); //removes from observable
+            this.masterAccount.getAccountsArrayList().remove(account); //removes from actual arraylist to get serialized
+
             Handler.updateThisMasterAccount(this.masterAccount);
         }
     }
@@ -110,6 +113,7 @@ public class AccountController {
             DialogBox.showDialog("You haven't selected any account", "No Account Selected");
             return;
         }
+
         int index = this.accountTableView.getSelectionModel().getSelectedIndex();
         Account account = this.masterAccount.getAccountsList().get(index);
 
