@@ -1,4 +1,5 @@
 view/AddAccountController.class
+mainapp/StartingPoint.class
 view/DialogBox.class
 mainapp/Handler.class
 model/Account.class

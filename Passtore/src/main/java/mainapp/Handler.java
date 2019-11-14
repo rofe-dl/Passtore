@@ -50,7 +50,7 @@ public class Handler {
         Collections.sort(masterAccountsList);
         try{
 
-            FileOutputStream out = new FileOutputStream("savefile");
+            FileOutputStream out = new FileOutputStream("passtoresavefile");
             ObjectOutputStream objectOut = new ObjectOutputStream(out);
             objectOut.writeObject( new ArrayList<MasterAccount>(masterAccountsList) ); //observable list converted to arraylist, as the former isn't serializable
             objectOut.flush(); out.flush();
@@ -65,7 +65,7 @@ public class Handler {
     /** Loads save file and deserializes the list into the static variable **/
     public static void initializeFromSaveFile(){
         try {
-            FileInputStream in = new FileInputStream("savefile");
+            FileInputStream in = new FileInputStream("passtoresavefile");
             ObjectInputStream objectIn = new ObjectInputStream(in);
 
             ArrayList<MasterAccount> arrayListExtracted = (ArrayList<MasterAccount>) objectIn.readObject();
