@@ -53,6 +53,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
                             <mainClass>
                                 mainapp.Passtore
                             </mainClass>
