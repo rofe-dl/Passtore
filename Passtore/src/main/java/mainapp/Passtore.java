@@ -17,6 +17,8 @@ public class Passtore extends Application{
         launch(args); //Calls the init(), then start() from parent class
     }
 
+    
+
     /**First method that automatically gets called in Application after main**/
     @Override
     public void init(){
