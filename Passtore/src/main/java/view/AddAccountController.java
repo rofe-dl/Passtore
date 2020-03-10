@@ -7,7 +7,7 @@ import mainapp.Handler;
 import model.*;
 import javafx.scene.control.*;
 
-public class AddAccountController {
+public class AddAccountController extends Controller {
 
     private MasterAccount currentMasterAccount;
     private Stage stage;

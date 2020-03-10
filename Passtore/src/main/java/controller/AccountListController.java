@@ -1,11 +1,10 @@
-package view;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import mainapp.Handler;
 import model.MasterAccount;
 
-public class AccountListController {
+public class AccountListController  extends Controller{
     @FXML
     private TableView<MasterAccount> masterAccountTableView;
     @FXML

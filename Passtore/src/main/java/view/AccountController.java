@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import mainapp.*;
 import model.*;
 
-public class AccountController {
+public class AccountController extends Controller{
 
     private MasterAccount masterAccount;
     private Passtore passtoreInstance;

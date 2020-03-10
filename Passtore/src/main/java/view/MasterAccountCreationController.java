@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import mainapp.*;
 import model.MasterAccount;
 
-public class MasterAccountCreationController {
+public class MasterAccountCreationController extends Controller {
     Stage stage;
 
     @FXML

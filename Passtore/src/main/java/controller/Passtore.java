@@ -64,44 +64,38 @@ public class Passtore extends Application{
         stage.setResizable(resize);
 
         stage.getIcons().add(new Image("/view/ico.png"));
+        stage.setScene(this.workingScene);
     }
 
     /**Program starts**/
     @Override
     public void start(Stage primaryStage){
+        this.workingStage = primaryStage;
         
-        String fxmlDirectory = "/view/WelcomeUI.fxml";
-        VBox mainPane = (VBox) loadFXML(fxmlDirectory);
-        WelcomeController controller = (WelcomeController) getController(fxmlDirectory);
+        VBox mainPane = (VBox) loadFXML("/view/WelcomeUI.fxml");
+        WelcomeController controller = (WelcomeController) getController("/view/WelcomeUI.fxml");
 
         this.workingScene.setRoot(mainPane);
         
-        setPrimaryWindow(primaryStage, controller, "Passtore", false);
+        setPrimaryWindow(this.workingStage, controller, "Passtore", false);
         workingStage.show();
     }
 
     /** shows UI of the list of master accounts **/
     public void showAccountListUI(){
+        
+        loader.setLocation(getClass().getResource("/view/AccountListUI.fxml"));
+        Scene scene = new Scene((VBox)loader.load());
 
-        loader = new FXMLLoader();
+        Stage stage = new Stage();
 
-        try{
-            loader.setLocation(getClass().getResource("/view/AccountListUI.fxml"));
-            Scene scene = new Scene((VBox)loader.load());
+        stage.setResizable(false);
+        stage.setTitle("Accounts");
+        stage.initModality(Modality.APPLICATION_MODAL);
 
-            Stage stage = new Stage();
-
-            stage.setResizable(false);
-            stage.setTitle("Accounts");
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            stage.setScene(scene);
-            stage.getIcons().add(new Image("/view/ico.png"));
-            stage.showAndWait();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        stage.setScene(scene);
+        stage.getIcons().add(new Image("/view/ico.png"));
+        stage.showAndWait();
 
     }
 

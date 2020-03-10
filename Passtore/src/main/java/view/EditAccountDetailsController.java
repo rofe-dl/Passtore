@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import model.Account;
 
 
-public class EditAccountDetailsController {
+public class EditAccountDetailsController extends Controller {
     private Account account;
     private Stage stage;
 

@@ -6,7 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import model.*;
 
-public class ChangeMasterAccountDetailsController {
+public class ChangeMasterAccountDetailsController extends Controller{
 
     Stage stage;
     MasterAccount currentMasterAccount;
