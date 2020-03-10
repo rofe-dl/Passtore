@@ -49,7 +49,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <mainClass>mainapp.EntryPoint</mainClass>
+                    <mainClass>controller.EntryPoint</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -57,7 +57,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>mainapp.EntryPoint</mainClass>
+                            <mainClass>controller.EntryPoint</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

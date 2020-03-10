@@ -1,10 +1,9 @@
-package view;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.stage.*;
 import javafx.scene.control.*;
-import mainapp.*;
 import model.MasterAccount;
 
 public class MasterAccountCreationController extends Controller {

@@ -1,10 +1,9 @@
-package view;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import mainapp.*;
 import model.*;
 
 public class AccountController extends Controller{
@@ -135,14 +134,13 @@ public class AccountController extends Controller{
         this.passtoreInstance.start(newStage);
     }
 
-    public void setCurrentAccountAndStage(MasterAccount e, Stage stage){
+    public void setCurrentAccount(MasterAccount e){
         this.masterAccount = e;
-        this.stage = stage;
         this.accountTableView.setItems(masterAccount.getAccountsList());
     }
 
-
-    public void setPasstoreInstance(Passtore passtoreInstance){
-        this.passtoreInstance = passtoreInstance;
+    public void setStage(Stage stage){
+        this.stage = stage;
     }
+
 }

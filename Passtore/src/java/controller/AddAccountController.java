@@ -1,9 +1,8 @@
-package view;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import mainapp.Handler;
 import model.*;
 import javafx.scene.control.*;
 

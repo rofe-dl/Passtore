@@ -9,7 +9,7 @@ import java.util.Optional;
 /** class that can show a dialog box with any message **/
 public class DialogBox {
     public static void showError(String message, String title){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
@@ -44,4 +44,6 @@ public class DialogBox {
 
         alert.showAndWait();
     }
+
+    public static void 
 }
