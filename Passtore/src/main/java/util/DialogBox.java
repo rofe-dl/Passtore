@@ -1,4 +1,4 @@
-package view;
+package util;
 
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.*;
@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.stage.*;
 import java.util.Optional;
 
-/** CLASS I MADE USED TO SHOW COMMON DIALOG BOXES WITH FLEXIBLE MESSAGES **/
+/** class that can show a dialog box with any message **/
 public class DialogBox {
     public static void showError(String message, String title){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -29,7 +29,7 @@ public class DialogBox {
         ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/view/ico.png"));
 
         Optional<ButtonType> result = alert.showAndWait();
-        return (result.get() == ButtonType.OK)? true : false;
+        return result.get() == ButtonType.OK;
     }
 
     public static void showDialog(String message, String title){

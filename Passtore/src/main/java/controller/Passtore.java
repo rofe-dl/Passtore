@@ -1,4 +1,6 @@
-package mainapp;
+package controller;
+
+import java.io.IOException;
 
 import javafx.application.*;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +19,6 @@ public class Passtore extends Application{
         launch(args); //Calls the init(), then start() from parent class
     }
 
-    
-
     /**First method that automatically gets called in Application after main**/
     @Override
     public void init(){
@@ -33,36 +33,51 @@ public class Passtore extends Application{
     }
 
     private Stage workingStage;
-    private static FXMLLoader loader;
+    private Scene workingScene;
+
+    private Parent loadFXML(String fxmlDir){
+
+        FXMLLoader loader;
+        Parent parent = null;
+
+        try{
+            loader = new FXMLLoader(getClass().getResource(fxmlDir));
+            parent = loader.load();
+        }catch (IOException e){
+            e.printStackTrace(); //should never happen
+        }
+    
+        return parent;
+    }
+
+    private Controller getController(String fxmlDir){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlDir));
+        return loader.getController();
+    }
+
+    private void setPrimaryWindow(Stage stage, Controller controller, String title, boolean resize){
+        /**sends an instance of main program to ui controller so other methods here can be called **/
+        controller.setProgramInstance(this);
+
+        stage.setTitle(title);
+        stage.setScene(this.workingScene);
+        stage.setResizable(resize);
+
+        stage.getIcons().add(new Image("/view/ico.png"));
+    }
 
     /**Program starts**/
     @Override
     public void start(Stage primaryStage){
+        
+        String fxmlDirectory = "/view/WelcomeUI.fxml";
+        VBox mainPane = (VBox) loadFXML(fxmlDirectory);
+        WelcomeController controller = (WelcomeController) getController(fxmlDirectory);
 
-        this.workingStage = primaryStage;
-        loader = new FXMLLoader();
-
-        try{
-
-            /** two common lines in all methods here, loads the respective UI from the fxml file and calls it's respective controller to control UI elements**/
-            loader.setLocation(getClass().getResource("/view/WelcomeUI.fxml"));
-            VBox mainPane = (VBox) loader.load();
-
-            WelcomeController controller = loader.getController();
-
-            /**sends an instance of main program to ui controller so other methods here can be called **/
-            controller.setPasstoreInstance(this);
-
-            workingStage.setTitle("Passtore");
-            workingStage.setScene(new Scene(mainPane));
-            workingStage.setResizable(false);
-            workingStage.getIcons().add(new Image("/view/ico.png"));
-            workingStage.show();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+        this.workingScene.setRoot(mainPane);
+        
+        setPrimaryWindow(primaryStage, controller, "Passtore", false);
+        workingStage.show();
     }
 
     /** shows UI of the list of master accounts **/

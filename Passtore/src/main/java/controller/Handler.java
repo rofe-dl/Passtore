@@ -1,4 +1,4 @@
-package mainapp;
+package controller;
 
 import javafx.collections.*;
 import model.MasterAccount;

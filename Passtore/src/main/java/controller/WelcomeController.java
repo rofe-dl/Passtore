@@ -1,17 +1,11 @@
-package view;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import mainapp.Handler;
-import mainapp.Passtore;
 
-public class WelcomeController {
 
-    private Passtore passtoreInstance;
-    public void setPasstoreInstance(Passtore passtoreInstance){
-        this.passtoreInstance = passtoreInstance;
-    }
+public class WelcomeController extends Controller{
 
     /** Items annotated @FXML means the the fxml file can access them**/
     @FXML
