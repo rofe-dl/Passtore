@@ -5,7 +5,7 @@ import model.*;
 
 public class SQLiteConnector{
     private static Connection conn;
-    private static String url = "jdbc:sqlite:passtoresavedata.db";
+    private static String url = "jdbc:sqlite:model/passtoresavedata.db";
 
     public static void connect(){
         try{

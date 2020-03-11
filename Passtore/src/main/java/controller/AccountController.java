@@ -50,7 +50,7 @@ public class AccountController extends Controller{
 
     @FXML
     private void initialize(){
-        /** sets the property each column will represent **/
+        //I still do not know how these lambda expressions work, copied from google
         siteColumn.setCellValueFactory(cellData -> cellData.getValue().siteProperty());
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
         usernameColumn.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
@@ -84,7 +84,7 @@ public class AccountController extends Controller{
         boolean delete = DialogBox.showConfirmation("Are you sure you want to delete this master account? Changes will be IRREVERSIBLE", "Deletion Confirmation");
         if (delete){
             DialogBox.showDialog("You will now be logged out", "Logging Out");
-            SaveFileHandler.deleteMasterAccount(this.masterAccount);
+            Updater.deleteMasterAccount(this.masterAccount);
             handleLogoutItem();
         }
     }
@@ -100,7 +100,7 @@ public class AccountController extends Controller{
             int index = this.accountTableView.getSelectionModel().getSelectedIndex();
             Account account = this.masterAccount.getAccountsList().get(index);
 
-            SaveFileHandler.deleteAccount(account, this.masterAccount);
+            Updater.deleteAccount(account, this.masterAccount);
         }
     }
 

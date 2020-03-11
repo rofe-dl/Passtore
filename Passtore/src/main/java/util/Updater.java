@@ -4,10 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import model.*;
+/**
+ * Updates data within the program. Updates both the observable list and within the database
+ * in each method, thus changing data both on the frontend and backend.
+ */
+public class Updater {
 
-public class SaveFileHandler {
-    /** the main object that's serialized || contains list of all master accounts and their stored passwords
-     * || saved as observable list as it allows viewing the list in a gui table**/
     private static ObservableList<MasterAccount> masterAccountsList;
 
     public static ObservableList<MasterAccount> getMasterAccountsList(){

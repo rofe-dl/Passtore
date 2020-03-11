@@ -10,23 +10,45 @@ import javafx.scene.*;
 import model.*;
 import util.*;
 
-/**MAIN PROGRAM STARTS HERE, FULL OF 'SHOW' METHODS THAT STARTS MOST OF THE UI ELEMENTS"**/
-
+/**
+ * Passtore is a program that can store all your different account passwords under
+ * a single master account, so only remembering one password gives you access to
+ * all your passwords. Don't recommend using it for storing very sensitive
+ * data as passwords are still stored as simple strings in this version in a SQLite
+ * database.
+ * 
+ * @author Rafidul Islam
+ * @version 2.0
+ * @since 12-03-2020
+ */
 public class Passtore extends Application{
 
+    /**
+     * Current stage of the main window
+     */
+    private Stage workingStage;
+    /**
+     * Current scene of the main window
+     */
+    private Scene workingScene;
+    /**
+     * Loader used to load the UI from FXML files
+     */
+    private FXMLLoader loader;
+
+
     public static void main(String[] args) {
-        launch(args); //Calls the init(), then start() from parent class
+        launch(args); //Calls the init() first, then start() from parent class
     }
 
+    /**
+     * Connects the program to the database and fills up data if it exists
+     */
     @Override
     public void init(){
         SQLiteConnector.connect();
-        SaveFileHandler.populateMasterAccounts();
+        Updater.populateMasterAccounts();
     }
-
-    private Stage workingStage;
-    private Scene workingScene;
-    private FXMLLoader loader;
 
     /**
      * Loads the UI from the .fxml file into the global variable loader
@@ -45,6 +67,12 @@ public class Passtore extends Application{
         return parent;
     }
 
+    /**
+     * Used to show or change the primary working window.
+     * Only used twice.
+     * @param title new title of the stage
+     * @param resize whether the stage will be resizable or not
+     */
     private void showPrimaryWindow(String title, boolean resize){
         this.workingStage.setTitle(title);
         this.workingStage.setResizable(resize);
@@ -54,6 +82,13 @@ public class Passtore extends Application{
         this.workingStage.show();
     }
 
+    /**
+     * Used to show secondary small windows like account creations or editors or small lists
+     * 
+     * @param title title of the stage
+     * @param stage a new stage object, so primary working stage isn't replaced
+     * @param scene scene to be used in this window
+     */
     private void showSecondaryWindow(String title, Stage stage, Scene scene){
         stage.setTitle(title);
         stage.setResizable(false);
@@ -64,7 +99,9 @@ public class Passtore extends Application{
         stage.showAndWait();
     }
 
-    /**Program starts**/
+    /**
+     * Start method called from the javafx Application class, a new stage passed from there
+     */
     @Override
     public void start(Stage primaryStage){
         this.workingStage = primaryStage;
@@ -78,10 +115,14 @@ public class Passtore extends Application{
         showPrimaryWindow("Passtore", false);
     }
 
+    /**
+     * Logs the user into the program and shows their account screen
+     * @param masterUsername 
+     */
     public void showAccount(String masterUsername){
 
-        int indexOfThatAccount = MasterAccountManager.login(masterUsername);
-        MasterAccount e = SaveFileHandler.getMasterAccountsList().get(indexOfThatAccount); //finds the account with the given username
+        int indexOfThatAccount = MasterAccountChecker.login(masterUsername);
+        MasterAccount e = Updater.getMasterAccountsList().get(indexOfThatAccount); //finds the account with the given username
 
         AnchorPane mainPane = (AnchorPane) loadFXML("/view/Account.fxml");
         this.workingScene.setRoot(mainPane);

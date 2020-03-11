@@ -44,7 +44,7 @@ public class EditAccountDetailsController extends Controller {
         String newUsername = this.username.getText();
         String newPassword = this.password.getText();
 
-        SaveFileHandler.updateAccount(this.account, newSite, newEmail, newUsername, newPassword);
+        Updater.updateAccount(this.account, newSite, newEmail, newUsername, newPassword);
         this.stage.close();
     }
 

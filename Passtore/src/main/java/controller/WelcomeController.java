@@ -44,12 +44,12 @@ public class WelcomeController extends Controller{
     /** methods starting with handle in these controllers shows the function that gets called when the button is pressed **/
     @FXML
     private void handleSignInButton(){
-        if(!MasterAccountManager.accountExists( masterUsernameField.getText().trim() )){
+        if(!MasterAccountChecker.checkAccountExists( masterUsernameField.getText().trim() )){
 
             DialogBox.showError("No such username exists, please sign up","Username Not Found");
             return;
 
-        }else if(!MasterAccountManager.checkPassword(masterUsernameField.getText().trim(), masterPasswordField.getText())){
+        }else if(!MasterAccountChecker.checkPassword(masterUsernameField.getText().trim(), masterPasswordField.getText())){
 
             DialogBox.showError("Your password is incorrect","Wrong Password");
             return;

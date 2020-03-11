@@ -32,7 +32,7 @@ public class ChangeMAccountDetailsController extends Controller{
         }else if(!passwordField.getText().equals(confirmPasswordField.getText())){
             DialogBox.showError("Your passwords don't match","Password Mismatch");
             return;
-        }else if(MasterAccountManager.accountExists( this.usernameField.getText().trim() ) && !this.usernameField.getText().trim().equals(currentMasterAccount.getUsername())){
+        }else if(MasterAccountChecker.checkAccountExists( this.usernameField.getText().trim() ) && !this.usernameField.getText().trim().equals(currentMasterAccount.getUsername())){
             DialogBox.showError("Username already exists! Please try another","Username Exists");
             return;
         }
@@ -40,7 +40,7 @@ public class ChangeMAccountDetailsController extends Controller{
         String newUsername = this.usernameField.getText().trim();
         String newPassword = this.passwordField.getText();
         
-        SaveFileHandler.updateMasterAccount(this.currentMasterAccount, newUsername, newPassword);
+        Updater.updateMasterAccount(this.currentMasterAccount, newUsername, newPassword);
         this.stage.close();
 
     }

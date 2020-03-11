@@ -38,7 +38,7 @@ public class AddAccountController extends Controller {
         if (username.getText().trim().isEmpty() && site.getText().trim().isEmpty() && email.getText().trim().isEmpty() && password.getText().trim().isEmpty()){
             DialogBox.showError("At least one of the fields must have some value", "Empty Fields");
         }else{
-            SaveFileHandler.addAccount(new Account( site.getText(),  email.getText(), username.getText(), password.getText() ), this.currentMasterAccount);
+            Updater.addAccount(new Account( site.getText(),  email.getText(), username.getText(), password.getText() ), this.currentMasterAccount);
             this.stage.close();
         }
 

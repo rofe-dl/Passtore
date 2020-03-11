@@ -30,12 +30,12 @@ public class MasterAccountCreationController extends Controller {
         }else if(!passwordField.getText().equals(confirmPasswordField.getText())){
             DialogBox.showError("Your passwords don't match","Password Mismatch");
             return;
-        }else if(MasterAccountManager.accountExists( this.usernameField.getText().trim() )){
+        }else if(MasterAccountChecker.checkAccountExists( this.usernameField.getText().trim() )){
             DialogBox.showError("Username already exists! Please try another","Username Exists");
             return;
         }
 
-        SaveFileHandler.addMasterAccount(new MasterAccount(usernameField.getText().trim(), passwordField.getText()));
+        Updater.addMasterAccount(new MasterAccount(usernameField.getText().trim(), passwordField.getText()));
 
         this.stage.close();
 
