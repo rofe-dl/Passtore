@@ -1,8 +1,5 @@
 package util;
 
-import java.io.*;
-import java.util.Collections;
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
@@ -49,16 +46,44 @@ public class SaveFileHandler {
             e.printStackTrace();
         }
     }
+
+    public static void addMasterAccount(MasterAccount ma){
+        masterAccountsList.add(ma);
+        SQLiteConnector.addMasterAccount(ma);
+    }
+
+    public static void addAccount(Account a, MasterAccount ma){
+        ma.getAccountsList().add(a);
+        SQLiteConnector.addAccount(a, ma);
+    }
     
-    public static void updateThisMasterAccount(MasterAccount masterAccount){
-        int indexOfAccount = Collections.binarySearch(masterAccountsList, masterAccount);
+    public static void updateMasterAccount(MasterAccount ma, String username, String password){
+        String oldUsername = ma.getUsername();
 
+        ma.setPassword(password);
+        ma.setUsername(username);
+        SQLiteConnector.updateMasterAccount(oldUsername, ma);
         
-        masterAccountsList.remove(indexOfAccount);
+    }
 
-        masterAccountsList.add(masterAccount);
+    public static void updateAccount(Account a, String site, String email, String username, String password){
+        String oldSite = a.getSite();
 
-        saveToFile();
+        a.setEmail(email);
+        a.setPassword(password);
+        a.setSite(site);
+        a.setUsername(username);
+        SQLiteConnector.updateAccount(oldSite, a);
+    }
+
+    public static void deleteMasterAccount(MasterAccount ma){
+        masterAccountsList.remove(ma);
+        SQLiteConnector.deleteMasterAccount(ma);
+    }
+
+    public static void deleteAccount(Account a, MasterAccount ma){
+        ma.getAccountsList().remove(a);
+        SQLiteConnector.deleteAccount(a);
     }
 
 }

@@ -49,20 +49,34 @@ public class SQLiteConnector{
         }
     }
 
-    public static void addMasterAccount(MasterAccount ma){
-        update("INSERT INTO masteraccounts" + ma.getUsername());
+    public static void updateMasterAccount(String oldUsername, MasterAccount updated){
+        update("UPDATE masteraccounts SET username = '" + updated.getUsername() + "'," +
+                                            "password = '" + updated.getPassword() + "' WHERE username = '" + oldUsername + "'");
     }
 
-    public static void deleteAccount(Account a){
-        update("DELETE FROM accounts WHERE site =" + a.getSite());
+    public static void updateAccount(String oldSite, Account updated){
+        update("UPDATE accounts SET username = '" + updated.getUsername() + "'," +
+                                            "password = '" + updated.getPassword() + "'," +
+                                            "site = '" + updated.getSite() + "'," + 
+                                            "email = '" + updated.getEmail() + "' WHERE site = '" + oldSite + "'");
+    }
+
+    public static void addMasterAccount(MasterAccount ma){
+        update("INSERT INTO masteraccounts VALUES('" + ma.getUsername()+ "','" + ma.getPassword() + "')");
+    }
+
+    public static void addAccount(Account a, MasterAccount ma){
+        update("INSERT INTO accounts VALUES('" + ma.getUsername()+ "','" + a.getSite() + 
+                                                "','" + a.getPassword() + "','" + a.getEmail() +
+                                                "','" + a.getUsername() + "')");
     }
 
     public static void deleteMasterAccount(MasterAccount ma){
-        update("DELETE FROM masteraccounts WHERE username =" + ma.getUsername());
+        update("DELETE FROM masteraccounts WHERE username = '" + ma.getUsername() + "'");
     }
 
     public static void deleteAccount(Account a){
-        update("DELETE FROM accounts WHERE site =" + a.getSite());
+        update("DELETE FROM accounts WHERE site = '" + a.getSite() + "'");
     }
 
     public static ResultSet getMasterAccounts(){
@@ -70,7 +84,7 @@ public class SQLiteConnector{
     }
 
     public static ResultSet getAccounts(String masterUsername){
-        return getResultSet("SELECT * FROM accounts WHERE owner=" + masterUsername);
+        return getResultSet("SELECT * FROM accounts WHERE owner = '" + masterUsername + "'");
     }
 
 }

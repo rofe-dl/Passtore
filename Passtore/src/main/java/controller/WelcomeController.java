@@ -49,10 +49,11 @@ public class WelcomeController extends Controller{
             DialogBox.showError("No such username exists, please sign up","Username Not Found");
             return;
 
-        }else if(!MasterAccountManager.passwordMatches(masterUsernameField.getText().trim(), masterPasswordField.getText())){
+        }else if(!MasterAccountManager.checkPassword(masterUsernameField.getText().trim(), masterPasswordField.getText())){
 
             DialogBox.showError("Your password is incorrect","Wrong Password");
             return;
+            
         }
 
         super.passtoreInstance.showAccount(masterUsernameField.getText().trim());

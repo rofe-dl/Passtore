@@ -37,11 +37,10 @@ public class ChangeMAccountDetailsController extends Controller{
             return;
         }
 
-        this.currentMasterAccount.setPassword(this.passwordField.getText());
-        this.currentMasterAccount.setUsername(this.usernameField.getText().trim());
-
-        SaveFileHandler.updateThisMasterAccount(this.currentMasterAccount);
-
+        String newUsername = this.usernameField.getText().trim();
+        String newPassword = this.passwordField.getText();
+        
+        SaveFileHandler.updateMasterAccount(this.currentMasterAccount, newUsername, newPassword);
         this.stage.close();
 
     }

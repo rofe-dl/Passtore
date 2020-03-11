@@ -34,23 +34,15 @@ public class AddAccountController extends Controller {
 
     @FXML
     private void handleAddButton(){
+
         if (username.getText().trim().isEmpty() && site.getText().trim().isEmpty() && email.getText().trim().isEmpty() && password.getText().trim().isEmpty()){
             DialogBox.showError("At least one of the fields must have some value", "Empty Fields");
-            return;
+        }else{
+            SaveFileHandler.addAccount(new Account( site.getText(),  email.getText(), username.getText(), password.getText() ), this.currentMasterAccount);
+            this.stage.close();
         }
 
-
-        this.currentMasterAccount.getAccountsList().add( new Account( site.getText(),  email.getText(), username.getText(), password.getText() ) );
-        //^ adds to observable list
-        this.currentMasterAccount.getAccountsArrayList().add( new Account ( site.getText(),  email.getText(), username.getText(), password.getText() ) );
-        // ^adds to actual arraylist to get serialized later
-
-        SaveFileHandler.updateThisMasterAccount(this.currentMasterAccount);
-
-        this.stage.close();
     }
-
-
 
     @FXML
     public void setMasterAccount(MasterAccount e){

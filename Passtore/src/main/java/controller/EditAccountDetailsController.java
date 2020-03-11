@@ -39,12 +39,12 @@ public class EditAccountDetailsController extends Controller {
             return;
         }
 
-        this.account.setSite(this.site.getText());
-        this.account.setEmail(this.email.getText());
-        this.account.setUsername(this.username.getText());
-        this.account.setPassword(this.password.getText());
+        String newSite = this.site.getText();
+        String newEmail = this.email.getText();
+        String newUsername = this.username.getText();
+        String newPassword = this.password.getText();
 
-
+        SaveFileHandler.updateAccount(this.account, newSite, newEmail, newUsername, newPassword);
         this.stage.close();
     }
 

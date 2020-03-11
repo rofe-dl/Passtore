@@ -35,8 +35,7 @@ public class MasterAccountCreationController extends Controller {
             return;
         }
 
-        SaveFileHandler.getMasterAccountsList().add(new MasterAccount(usernameField.getText().trim(), passwordField.getText()));
-        SaveFileHandler.saveToFile();
+        SaveFileHandler.addMasterAccount(new MasterAccount(usernameField.getText().trim(), passwordField.getText()));
 
         this.stage.close();
 

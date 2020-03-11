@@ -83,9 +83,8 @@ public class AccountController extends Controller{
     private void handleDeleteMasterAccountItem(){
         boolean delete = DialogBox.showConfirmation("Are you sure you want to delete this master account? Changes will be IRREVERSIBLE", "Deletion Confirmation");
         if (delete){
-            SaveFileHandler.getMasterAccountsList().remove(this.masterAccount);
             DialogBox.showDialog("You will now be logged out", "Logging Out");
-            SaveFileHandler.saveToFile();
+            SaveFileHandler.deleteMasterAccount(this.masterAccount);
             handleLogoutItem();
         }
     }
@@ -101,10 +100,7 @@ public class AccountController extends Controller{
             int index = this.accountTableView.getSelectionModel().getSelectedIndex();
             Account account = this.masterAccount.getAccountsList().get(index);
 
-            this.masterAccount.getAccountsList().remove(account); //removes from observable
-            this.masterAccount.getAccountsArrayList().remove(account); //removes from actual arraylist to get serialized
-
-            SaveFileHandler.updateThisMasterAccount(this.masterAccount);
+            SaveFileHandler.deleteAccount(account, this.masterAccount);
         }
     }
 
@@ -119,8 +115,6 @@ public class AccountController extends Controller{
         Account account = this.masterAccount.getAccountsList().get(index);
 
         super.passtoreInstance.editAccountDetails(account);
-
-        SaveFileHandler.updateThisMasterAccount(this.masterAccount);
     }
 
     @FXML
