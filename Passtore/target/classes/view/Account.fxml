@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="650.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountController">
+   <children>
+      <MenuBar layoutX="-8.0" layoutY="2.0" prefHeight="25.0" prefWidth="787.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu fx:id="accountMenu" mnemonicParsing="false" text="Master Account">
+            <items>
+                  <MenuItem fx:id="changeMasterAccountDetailsItem" mnemonicParsing="false" onAction="#handleChangeMasterAccountDetailsItem" text="Change master account details" />
+                  <MenuItem fx:id="deleteMasterAccountItem" mnemonicParsing="false" onAction="#handleDeleteMasterAccountItem" text="Delete this master account" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="logoutItem" mnemonicParsing="false" onAction="#handleLogoutItem" text="Logout" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TableView fx:id="accountTableView" layoutX="172.0" layoutY="143.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="90.0">
+        <columns>
+          <TableColumn fx:id="siteColumn" maxWidth="2500.0" prefWidth="118.0" text="Site" />
+          <TableColumn fx:id="emailColumn" prefWidth="244.0" text="Email" />
+            <TableColumn fx:id="usernameColumn" maxWidth="3000.0" prefWidth="158.0" text="Username" />
+            <TableColumn fx:id="passwordColumn" prefWidth="97.0" text="Password" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox alignment="CENTER_RIGHT" focusTraversable="true" layoutX="25.0" layoutY="43.0" prefHeight="31.0" prefWidth="1032.0" spacing="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+         <children>
+            <ButtonBar buttonMinWidth="150.0" prefHeight="31.0" prefWidth="780.0" HBox.hgrow="ALWAYS">
+              <buttons>
+                  <Button fx:id="addAccountButton" mnemonicParsing="false" onAction="#handleAddAccountButton" text="Add Account" />
+                <Button fx:id="editAccountButton" mnemonicParsing="false" onAction="#handleEditAccountButton" text="Edit Account Details" />
+                  <Button fx:id="removeAccountButton" mnemonicParsing="false" onAction="#handleRemoveAccountButton" text="Remove Account" />
+              </buttons>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ButtonBar>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
