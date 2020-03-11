@@ -1,14 +1,13 @@
-package controller;
+package util;
 
-import javafx.collections.*;
-import model.MasterAccount;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.io.*;
+import java.util.Collections;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.*;
 
-/** class that handles file loading and reading **/
-public class Handler {
-
+public class SaveFileHandler {
     /** the main object that's serialized || contains list of all master accounts and their stored passwords
      * || saved as observable list as it allows viewing the list in a gui table**/
     private static ObservableList<MasterAccount> masterAccountsList;
@@ -16,28 +15,7 @@ public class Handler {
     public static ObservableList<MasterAccount> getMasterAccountsList(){
         return masterAccountsList;
     }
-
-    public static boolean checkIfPasswordMatches(String masterUsername, String masterPassword){
-        for (MasterAccount i : masterAccountsList){
-            if (i.getUsername().equals(masterUsername) && i.getPassword().equals(masterPassword)) return true;
-        }
-
-        return false;
-    }
-
-    public static boolean checkIfAccountExists(String masterUsername){
-        int x = Collections.binarySearch(masterAccountsList, new MasterAccount(masterUsername,""));
-
-        return (x >= 0)? true : false;
-    }
-
-    /*****returns index number of the account from the list of master accounts*****/
-    public static int login(String masterUsername){
-        int x = Collections.binarySearch(masterAccountsList, new MasterAccount(masterUsername,""));
-
-        return x;
-    }
-
+    
     public static void updateThisMasterAccount(MasterAccount masterAccount){
         int x = Collections.binarySearch(masterAccountsList, masterAccount);
         masterAccountsList.remove(x);

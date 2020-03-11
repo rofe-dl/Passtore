@@ -8,42 +8,28 @@ import java.util.Optional;
 
 /** class that can show a dialog box with any message **/
 public class DialogBox {
-    public static void showError(String message, String title){
-        Alert alert = new Alert(AlertType.ERROR);
+
+    public static Alert setupBox(String message, String title, AlertType boxType){
+        Alert alert = new Alert(boxType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.initModality(Modality.APPLICATION_MODAL);
 
         ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/view/ico.png"));
+        return alert;
+    }
 
-        alert.showAndWait();
+    public static void showError(String message, String title){
+        setupBox(message, title, AlertType.ERROR).showAndWait();
     }
 
     public static boolean showConfirmation(String message, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/view/ico.png"));
-
-        Optional<ButtonType> result = alert.showAndWait();
+        Optional<ButtonType> result = setupBox(message, title, AlertType.CONFIRMATION).showAndWait();;
         return result.get() == ButtonType.OK;
     }
 
     public static void showDialog(String message, String title){
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initModality(Modality.APPLICATION_MODAL);
-
-
-        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/view/ico.png"));
-
-        alert.showAndWait();
+        setupBox(message, title, AlertType.INFORMATION).showAndWait();
     }
 
-    //public static void 
 }

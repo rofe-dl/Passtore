@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.MasterAccount;
+import util.SaveFileHandler;
 
 public class AccountListController  extends Controller{
     @FXML
@@ -13,7 +14,7 @@ public class AccountListController  extends Controller{
 
     @FXML
     private void initialize(){
-        masterAccountTableView.setItems(Handler.getMasterAccountsList());
+        masterAccountTableView.setItems(SaveFileHandler.getMasterAccountsList());
         usernameColumn.setCellValueFactory(e -> e.getValue().usernameProperty());
     }
 }

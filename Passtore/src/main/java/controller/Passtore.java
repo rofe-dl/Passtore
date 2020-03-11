@@ -8,6 +8,7 @@ import javafx.stage.*;
 import javafx.scene.layout.*;
 import javafx.scene.*;
 import model.*;
+import util.*;
 
 /**MAIN PROGRAM STARTS HERE, FULL OF 'SHOW' METHODS THAT STARTS MOST OF THE UI ELEMENTS"**/
 
@@ -19,9 +20,9 @@ public class Passtore extends Application{
 
     @Override
     public void init(){
-        Handler.initializeFromSaveFile(); //loads save file
+        SaveFileHandler.initializeFromSaveFile(); //loads save file
 
-        for(MasterAccount i : Handler.getMasterAccountsList()){ //check method location for explanation
+        for(MasterAccount i : SaveFileHandler.getMasterAccountsList()){ //check method location for explanation
             i.deserializeIntoProperty();
             for (Account j : i.getAccountsList()){
                 j.deserializeIntoProperty();
@@ -123,8 +124,8 @@ public class Passtore extends Application{
 
     public void showAccount(String masterUsername){
 
-        int indexOfThatAccount = Handler.login(masterUsername);
-        MasterAccount e = Handler.getMasterAccountsList().get(indexOfThatAccount); //finds the account with the given username
+        int indexOfThatAccount = MasterAccountManager.login(masterUsername);
+        MasterAccount e = SaveFileHandler.getMasterAccountsList().get(indexOfThatAccount); //finds the account with the given username
 
         AnchorPane mainPane = (AnchorPane) loadFXML("/view/Account.fxml");
         this.workingScene.setRoot(mainPane);
