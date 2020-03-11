@@ -41,8 +41,10 @@ public class AccountController extends Controller{
 
     @FXML
     private MenuItem changeMasterAccountDetailsItem;
+
     @FXML
     private MenuItem deleteMasterAccountItem;
+
     @FXML
     private MenuItem logoutItem;
 
@@ -89,7 +91,7 @@ public class AccountController extends Controller{
     }
 
     @FXML
-    private void UpdateremoveAccountButton(){
+    private void handleRemoveAccountButton(){
         if (this.accountTableView.getSelectionModel().getSelectedIndex() == -1) {
             DialogBox.showDialog("You haven't selected any account", "No Account Selected");
             return;
@@ -116,14 +118,14 @@ public class AccountController extends Controller{
         int index = this.accountTableView.getSelectionModel().getSelectedIndex();
         Account account = this.masterAccount.getAccountsList().get(index);
 
-        this.passtoreInstance.editAccountDetails(account);
+        super.passtoreInstance.editAccountDetails(account);
 
         SaveFileHandler.updateThisMasterAccount(this.masterAccount);
     }
 
     @FXML
     private void handleAddAccountButton(){
-        this.passtoreInstance.addAccount(this.masterAccount);
+        super.passtoreInstance.addAccount(this.masterAccount);
     }
 
     @FXML

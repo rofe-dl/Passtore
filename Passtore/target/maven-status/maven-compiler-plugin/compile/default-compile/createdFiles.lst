@@ -1,12 +1,13 @@
 controller/ChangeMAccountDetailsController.class
-controller/Handler.class
 controller/AccountController.class
+util/SaveFileHandler.class
 model/Account.class
 controller/WelcomeController.class
 controller/AddAccountController.class
 model/MasterAccount.class
 controller/Passtore.class
 controller/MasterAccountCreationController.class
+util/MasterAccountManager.class
 controller/Start.class
 util/DialogBox.class
 controller/AccountListController.class
