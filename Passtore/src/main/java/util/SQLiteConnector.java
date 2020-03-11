@@ -5,9 +5,12 @@ import model.*;
 
 public class SQLiteConnector{
     private static Connection conn;
-    private static String url = "jdbc:sqlite:model/passtoresavedata.db";
+    private static String url;
 
     public static void connect(){
+        if(System.getProperty("osname") == ("Linux")) url = "jdbc:sqlite:/home/passtoresavedata.db";
+        else url = "jdbc:sqlite:C:\\passtore\\passtoresavedata.db";
+
         try{
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(url);

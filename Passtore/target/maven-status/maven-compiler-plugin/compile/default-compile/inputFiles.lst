@@ -4,13 +4,13 @@
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/AccountController.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/Passtore.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/AddAccountController.java
-/home/rafid/Documents/personalprojects/Passtore/src/main/java/util/SaveFileHandler.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/util/DialogBox.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/AccountListController.java
+/home/rafid/Documents/personalprojects/Passtore/src/main/java/util/Updater.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/ChangeMAccountDetailsController.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/WelcomeController.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/Controller.java
-/home/rafid/Documents/personalprojects/Passtore/src/main/java/util/MasterAccountManager.java
+/home/rafid/Documents/personalprojects/Passtore/src/main/java/util/MasterAccountChecker.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/model/Account.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/util/SQLiteConnector.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/Start.java

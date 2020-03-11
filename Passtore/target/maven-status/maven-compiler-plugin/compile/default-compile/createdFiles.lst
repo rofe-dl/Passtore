@@ -1,14 +1,14 @@
 controller/ChangeMAccountDetailsController.class
+util/MasterAccountChecker.class
 controller/AccountController.class
-util/SaveFileHandler.class
 util/SQLiteConnector.class
 model/Account.class
 controller/WelcomeController.class
 controller/AddAccountController.class
+util/Updater.class
 model/MasterAccount.class
 controller/Passtore.class
 controller/MasterAccountCreationController.class
-util/MasterAccountManager.class
 controller/Start.class
 util/DialogBox.class
 controller/AccountListController.class
