@@ -1,73 +1,46 @@
 package model;
 import java.io.Serializable;
-import java.util.ArrayList;
 import javafx.beans.property.*;
 import javafx.collections.*;
 
 /** structure of a master account **/
 public class MasterAccount implements Comparable<MasterAccount>, Serializable {
 
-    /** Each variable has it's own property variable
-     * Property variables are the ones displayed on gui as they can show live changes
-     *  Property variables aren't serializable, so marked transient
-     *  String variables are the ones that get serialized**/
-
-    private ArrayList<Account> accountsList;
-    private String username, password;
-
-    private transient ObservableList<Account> pAccountsList;
-    private transient StringProperty pUsername, pPassword;
+    private ObservableList<Account> accounts;
+    private StringProperty username, password;
 
     public MasterAccount(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.accountsList = new ArrayList<Account>();
-
-        this.pUsername = new SimpleStringProperty(username);
-        this.pPassword = new SimpleStringProperty(password);
-        this.pAccountsList = FXCollections.observableArrayList();
-    }
-
-    /**  Creates the property objects from it's respective string at the start of the program **/
-    public void deserializeIntoProperty(){
-        this.pUsername = new SimpleStringProperty(this.username);
-        this.pPassword = new SimpleStringProperty(this.password);
-        this.pAccountsList = FXCollections.observableArrayList(this.accountsList);
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
+        this.accounts = FXCollections.observableArrayList();
     }
 
     public ObservableList<Account> getAccountsList() {
-        return this.pAccountsList;
-    }
-
-    //same as above method, but returns the arraylist
-    public ArrayList<Account> getAccountsArrayList(){
-        return this.accountsList;
+        return this.accounts;
     }
 
     public String getUsername() {
-        return this.pUsername.get();
+        return this.username.get();
     }
 
     public StringProperty usernameProperty() {
-        return this.pUsername;
+        return this.username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
-        this.pUsername.set(username);
+        this.username.set(username);
     }
 
     public String getPassword() {
-        return this.pPassword.get();
+        return this.password.get();
     }
 
     public StringProperty passwordProperty() {
-        return this.pPassword;
-    } //never really used but eh let's keep it
+        return this.password;
+    }
 
     public void setPassword(String password) {
-        this.password = password;
-        this.pPassword.set(password);
+        this.password.set(password);
     }
 
     @Override

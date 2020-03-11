@@ -60,12 +60,12 @@ public class WelcomeController extends Controller{
 
     @FXML
     private void handleSignUpButton(){
-        this.passtoreInstance.masterAccountCreation();
+        super.passtoreInstance.masterAccountCreation();
     }
 
     @FXML
     private void handleListOfMasterAccountsButton(){
-        this.passtoreInstance.showAccountListUI();
+        super.passtoreInstance.showAccountListUI();
     }
 
 }

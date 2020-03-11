@@ -12,4 +12,5 @@
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/Controller.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/util/MasterAccountManager.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/model/Account.java
+/home/rafid/Documents/personalprojects/Passtore/src/main/java/util/SQLiteConnector.java
 /home/rafid/Documents/personalprojects/Passtore/src/main/java/controller/Start.java

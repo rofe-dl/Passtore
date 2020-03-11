@@ -1,6 +1,7 @@
 controller/ChangeMAccountDetailsController.class
 controller/AccountController.class
 util/SaveFileHandler.class
+util/SQLiteConnector.class
 model/Account.class
 controller/WelcomeController.class
 controller/AddAccountController.class

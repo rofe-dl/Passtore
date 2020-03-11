@@ -7,84 +7,61 @@ import javafx.beans.property.*;
 /** structure of a normal account **/
 public class Account implements Comparable<Account>, Serializable {
 
-    /** Each String variable has it's own property variable
-     * Property variables are the ones displayed on gui as they can show live changes
-     *  Property variables aren't serializable, so marked transient
-     *  String variables are the ones that get serialized**/
-
-    private String site, email, password, username;
-    private transient StringProperty pSite, pEmail, pPassword, pUsername; //p means it's a property object
+    private StringProperty site, email, password, username; 
 
     public Account(String site, String email, String username, String password){
-        this.site = site;
-        this.email = email;
-        this.password = password;
-        this.username = username;
-
-        this.pSite = new SimpleStringProperty(site);
-        this.pEmail = new SimpleStringProperty(email);
-        this.pPassword = new SimpleStringProperty(password);
-        this.pUsername = new SimpleStringProperty(username);
-    }
-
-    /**  Creates the property objects from it's respective string at the start of the program **/
-    public void deserializeIntoProperty(){
-        this.pSite = new SimpleStringProperty(this.site);
-        this.pEmail = new SimpleStringProperty(this.email);
-        this.pPassword = new SimpleStringProperty(this.password);
-        this.pUsername = new SimpleStringProperty(this.username);
+        this.site = new SimpleStringProperty(site);
+        this.email = new SimpleStringProperty(email);
+        this.password = new SimpleStringProperty(password);
+        this.username = new SimpleStringProperty(username);
     }
 
     public void setSite(String site) {
-        this.site = site;
-        this.pSite.set(site);
+        this.site.set(site);
     }
 
     public void setEmail(String email) {
-        this.email = email;
-        this.pEmail.set(email);
+        this.email.set(email);
     }
 
     public void setPassword(String password) {
-        this.password = password;
-        this.pPassword.set(password);
+        this.password.set(password);
     }
 
     public void setUsername(String username) {
-        this.username = username;
-        this.pUsername.set(username);
+        this.username.set(username);
     }
 
     public String getSite() {
-        return this.pSite.get();
+        return this.site.get();
     }
 
     public StringProperty siteProperty() {
-        return this.pSite;
+        return this.site;
     }
 
     public String getEmail() {
-        return this.pEmail.get();
+        return this.email.get();
     }
 
     public StringProperty emailProperty() {
-        return this.pEmail;
+        return this.email;
     }
 
     public String getPassword() {
-        return this.pPassword.get();
+        return this.password.get();
     }
 
     public StringProperty passwordProperty() {
-        return this.pPassword;
+        return this.password;
     }
 
     public String getUsername() {
-        return this.pUsername.get();
+        return this.username.get();
     }
 
     public StringProperty usernameProperty() {
-        return this.pUsername;
+        return this.username;
     }
 
     @Override

@@ -20,14 +20,8 @@ public class Passtore extends Application{
 
     @Override
     public void init(){
-        SaveFileHandler.initializeFromSaveFile(); //loads save file
-
-        for(MasterAccount i : SaveFileHandler.getMasterAccountsList()){ //check method location for explanation
-            i.deserializeIntoProperty();
-            for (Account j : i.getAccountsList()){
-                j.deserializeIntoProperty();
-            }
-        }
+        SQLiteConnector.connect();
+        SaveFileHandler.populateMasterAccounts();
     }
 
     private Stage workingStage;
@@ -84,6 +78,25 @@ public class Passtore extends Application{
         showPrimaryWindow("Passtore", false);
     }
 
+    public void showAccount(String masterUsername){
+
+        int indexOfThatAccount = MasterAccountManager.login(masterUsername);
+        MasterAccount e = SaveFileHandler.getMasterAccountsList().get(indexOfThatAccount); //finds the account with the given username
+
+        AnchorPane mainPane = (AnchorPane) loadFXML("/view/Account.fxml");
+        this.workingScene.setRoot(mainPane);
+
+        AccountController controller = loader.getController();
+        controller.setCurrentAccount(e); //passes the account found
+        controller.setStage(this.workingStage);
+        controller.setProgramInstance(this);
+
+        workingStage.setMinHeight(300);
+        workingStage.setMinWidth(600);
+        showPrimaryWindow("@" + e.getUsername(), true);
+
+    }
+
     public void showAccountListUI(){
         VBox mainPane = (VBox) loadFXML("/view/AccountList.fxml");
         showSecondaryWindow("Accounts", new Stage(), new Scene(mainPane));
@@ -122,24 +135,6 @@ public class Passtore extends Application{
         showSecondaryWindow("Sign Up", stage, new Scene(mainPane));
     }
 
-    public void showAccount(String masterUsername){
-
-        int indexOfThatAccount = MasterAccountManager.login(masterUsername);
-        MasterAccount e = SaveFileHandler.getMasterAccountsList().get(indexOfThatAccount); //finds the account with the given username
-
-        AnchorPane mainPane = (AnchorPane) loadFXML("/view/Account.fxml");
-        this.workingScene.setRoot(mainPane);
-
-        AccountController controller = loader.getController();
-        controller.setCurrentAccount(e); //passes the account found
-        controller.setStage(this.workingStage);
-        controller.setProgramInstance(this);
-
-        workingStage.setMinHeight(300);
-        workingStage.setMinWidth(600);
-        showPrimaryWindow("@" + e.getUsername(), true);
-
-    }
 
     public void editAccountDetails(Account account){
         VBox mainPane = (VBox) loadFXML("/view/EditAccountDetails.fxml");

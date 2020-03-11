@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.sql.*;
 import model.*;
 
 public class SaveFileHandler {
@@ -15,45 +16,49 @@ public class SaveFileHandler {
     public static ObservableList<MasterAccount> getMasterAccountsList(){
         return masterAccountsList;
     }
+
+    public static void populateMasterAccounts(){
+        masterAccountsList = FXCollections.observableArrayList();
+        try{
+            ResultSet rs = SQLiteConnector.getMasterAccounts();
+            while(rs.next()){
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+
+                MasterAccount ma = new MasterAccount(username, password);
+                populateAccounts(ma);
+                masterAccountsList.add(ma);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void populateAccounts(MasterAccount ma){
+        try{
+            ResultSet rs = SQLiteConnector.getAccounts(ma.getUsername());
+            while(rs.next()){
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String site = rs.getString("site");
+                String email = rs.getString("email");
+
+                ma.getAccountsList().add(new Account(site, email, username, password));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
     public static void updateThisMasterAccount(MasterAccount masterAccount){
-        int x = Collections.binarySearch(masterAccountsList, masterAccount);
-        masterAccountsList.remove(x);
+        int indexOfAccount = Collections.binarySearch(masterAccountsList, masterAccount);
+
+        
+        masterAccountsList.remove(indexOfAccount);
+
         masterAccountsList.add(masterAccount);
+
         saveToFile();
     }
 
-    /** method that gets called whenever a change is brought to the static list, writes the change into the file **/
-    public static void saveToFile(){
-        Collections.sort(masterAccountsList);
-        try{
-
-            FileOutputStream out = new FileOutputStream("passtoresavefile");
-            ObjectOutputStream objectOut = new ObjectOutputStream(out);
-            objectOut.writeObject( new ArrayList<MasterAccount>(masterAccountsList) ); //observable list converted to arraylist, as the former isn't serializable
-            objectOut.flush(); out.flush();
-            objectOut.close(); out.close();
-
-        }catch (IOException e){
-            System.out.println("Failed to write to file for some reason. You sure you got permission to edit" +
-                    " this directory?");
-        }
-    }
-
-    /** Loads save file and deserializes the list into the static variable **/
-    public static void initializeFromSaveFile(){
-        try {
-            FileInputStream in = new FileInputStream("passtoresavefile");
-            ObjectInputStream objectIn = new ObjectInputStream(in);
-
-            ArrayList<MasterAccount> arrayListExtracted = (ArrayList<MasterAccount>) objectIn.readObject();
-            masterAccountsList = FXCollections.observableArrayList(arrayListExtracted); //converts extracted arraylist into an observablelist
-            in.close(); objectIn.close();
-            
-        } catch (Exception e) {
-
-            masterAccountsList = FXCollections.observableArrayList(); //if no save file, a new one is created
-            saveToFile();
-        }
-    }
 }

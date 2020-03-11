@@ -6,7 +6,7 @@ import java.util.Collections;
 
 public class MasterAccountManager{
 
-    public static boolean passwordMatches(String masterUsername, String masterPassword){
+    public static boolean checkPassword(String masterUsername, String masterPassword){
         ObservableList<MasterAccount> list = SaveFileHandler.getMasterAccountsList();
         for (MasterAccount i : list){
             if (i.getUsername().equals(masterUsername) && i.getPassword().equals(masterPassword)) return true;
