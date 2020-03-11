@@ -6,7 +6,7 @@ import java.sql.*;
 import model.*;
 /**
  * Updates data within the program. Updates both the observable list and within the database
- * in each method, thus changing data both on the frontend and backend.
+ * in each method, thus changing data both on the frontend for the viewer and backend.
  */
 public class Updater {
 
@@ -49,6 +49,8 @@ public class Updater {
         }
     }
 
+    /* Methods below perform create, update and delete operations on the data*/
+
     public static void addMasterAccount(MasterAccount ma){
         masterAccountsList.add(ma);
         SQLiteConnector.addMasterAccount(ma);
@@ -65,7 +67,6 @@ public class Updater {
         ma.setPassword(password);
         ma.setUsername(username);
         SQLiteConnector.updateMasterAccount(oldUsername, ma);
-        
     }
 
     public static void updateAccount(Account a, String site, String email, String username, String password){
