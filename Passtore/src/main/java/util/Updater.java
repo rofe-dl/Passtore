@@ -1,23 +1,20 @@
 package util;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import java.sql.*;
 import model.*;
 /**
- * Updates data within the program. Updates both the observable list and the database
- * in each method, thus changing data both on the frontend for the viewer and backend.
+ * Updates data within the program. Updates both the observable list in model.MasterACcountData
+ * and the database in each method, thus changing data both on the frontend  for the viewer
+ * and backend for the db.
  */
 public class Updater {
 
-    private static ObservableList<MasterAccount> masterAccountsList;
-
-    public static ObservableList<MasterAccount> getMasterAccountsList(){
-        return masterAccountsList;
-    }
-
+    /**
+     * Fills the observable master accounts list with data from the database
+     */
     public static void populateMasterAccounts(){
-        masterAccountsList = FXCollections.observableArrayList();
+        MasterAccountData.setMasterAccountList(FXCollections.observableArrayList());
         try{
             ResultSet rs = SQLiteConnector.getMasterAccounts();
             while(rs.next()){
@@ -26,16 +23,21 @@ public class Updater {
 
                 MasterAccount ma = new MasterAccount(username, password);
                 populateAccounts(ma);
-                masterAccountsList.add(ma);
+                MasterAccountData.getMasterAccountsList().add(ma);
             }
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
+    /**
+     * Fills the observable accounts list in the master account object
+     * with accounts found from the database
+     * @param ma master account to fill up
+     */
     public static void populateAccounts(MasterAccount ma){
         try{
-            ResultSet rs = SQLiteConnector.getAccounts(ma.getUsername());
+            ResultSet rs = SQLiteConnector.getAccounts(ma);
             while(rs.next()){
                 String username = rs.getString("username");
                 String password = rs.getString("password");
@@ -52,7 +54,7 @@ public class Updater {
     /* Methods below perform create, update and delete operations on the data*/
 
     public static void addMasterAccount(MasterAccount ma){
-        masterAccountsList.add(ma);
+        MasterAccountData.getMasterAccountsList().add(ma);
         SQLiteConnector.addMasterAccount(ma);
     }
 
@@ -69,24 +71,24 @@ public class Updater {
         SQLiteConnector.updateMasterAccount(oldUsername, ma);
     }
 
-    public static void updateAccount(Account a, String site, String email, String username, String password){
+    public static void updateAccount(MasterAccount ma, Account a, String site, String email, String username, String password){
         String oldSite = a.getSite();
 
         a.setEmail(email);
         a.setPassword(password);
         a.setSite(site);
         a.setUsername(username);
-        SQLiteConnector.updateAccount(oldSite, a);
+        SQLiteConnector.updateAccount(oldSite, a, ma);
     }
 
     public static void deleteMasterAccount(MasterAccount ma){
-        masterAccountsList.remove(ma);
+        MasterAccountData.getMasterAccountsList().remove(ma);
         SQLiteConnector.deleteMasterAccount(ma);
     }
 
     public static void deleteAccount(Account a, MasterAccount ma){
         ma.getAccountsList().remove(a);
-        SQLiteConnector.deleteAccount(a);
+        SQLiteConnector.deleteAccount(a, ma);
     }
 
 }

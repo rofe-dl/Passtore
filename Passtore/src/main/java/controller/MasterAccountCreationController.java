@@ -6,7 +6,9 @@ import javafx.stage.*;
 import javafx.scene.control.*;
 import model.MasterAccount;
 import util.*;
-
+/**
+ * Controller for signing up (creating a new master account)
+ */
 public class MasterAccountCreationController extends Controller {
     Stage stage;
 
@@ -25,22 +27,27 @@ public class MasterAccountCreationController extends Controller {
     @FXML
     private void handleSignUpButton(){
         if (usernameField.getText().trim().isEmpty()){
+
             DialogBox.showError("Username cannot be empty","Invalid Username");
-            return;
+
         }else if(!passwordField.getText().equals(confirmPasswordField.getText())){
+
             DialogBox.showError("Your passwords don't match","Password Mismatch");
-            return;
+
         }else if(MasterAccountChecker.checkAccountExists( this.usernameField.getText().trim() )){
+
             DialogBox.showError("Username already exists! Please try another","Username Exists");
-            return;
+
+        }else{
+            
+            Updater.addMasterAccount(new MasterAccount(usernameField.getText().trim(), passwordField.getText()));
+            this.stage.close();
         }
-
-        Updater.addMasterAccount(new MasterAccount(usernameField.getText().trim(), passwordField.getText()));
-
-        this.stage.close();
-
     }
 
+    /**
+     * First method that runs when the corresponding fxml file is loaded.
+     */
     @FXML
     private void initialize(){
         signUpButton.setOnKeyPressed(e -> {

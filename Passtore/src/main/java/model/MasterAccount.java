@@ -1,10 +1,11 @@
 package model;
-import java.io.Serializable;
 import javafx.beans.property.*;
 import javafx.collections.*;
 
-/** structure of a master account **/
-public class MasterAccount implements Comparable<MasterAccount>, Serializable {
+/**
+ * Structure of a master account
+ */
+public class MasterAccount implements Comparable<MasterAccount> {
 
     private ObservableList<Account> accounts;
     private StringProperty username, password;

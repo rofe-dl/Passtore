@@ -7,10 +7,13 @@ import javafx.stage.Stage;
 import model.*;
 import util.*;
 
+/**
+ * Controller for editing master account details.
+ */
 public class ChangeMAccountDetailsController extends Controller{
 
     Stage stage;
-    MasterAccount currentMasterAccount;
+    MasterAccount ma;
 
     @FXML
     private TextField usernameField;
@@ -27,24 +30,31 @@ public class ChangeMAccountDetailsController extends Controller{
     @FXML
     private void handleChangeButton(){
         if (usernameField.getText().trim().isEmpty()){
+            
             DialogBox.showError("Username cannot be empty","Invalid Username");
-            return;
-        }else if(!passwordField.getText().equals(confirmPasswordField.getText())){
-            DialogBox.showError("Your passwords don't match","Password Mismatch");
-            return;
-        }else if(MasterAccountChecker.checkAccountExists( this.usernameField.getText().trim() ) && !this.usernameField.getText().trim().equals(currentMasterAccount.getUsername())){
-            DialogBox.showError("Username already exists! Please try another","Username Exists");
-            return;
-        }
 
-        String newUsername = this.usernameField.getText().trim();
-        String newPassword = this.passwordField.getText();
-        
-        Updater.updateMasterAccount(this.currentMasterAccount, newUsername, newPassword);
-        this.stage.close();
+        }else if(!passwordField.getText().equals(confirmPasswordField.getText())){
+
+            DialogBox.showError("Your passwords don't match","Password Mismatch");
+
+        }else if(MasterAccountChecker.checkAccountExists( usernameField.getText().trim() ) && !usernameField.getText().trim().equals(ma.getUsername())){
+
+            DialogBox.showError("Username already exists! Please try another","Username Exists");
+
+        }else{
+
+            String newUsername = usernameField.getText().trim();
+            String newPassword = passwordField.getText();
+            
+            Updater.updateMasterAccount(this.ma, newUsername, newPassword);
+            this.stage.close();
+        }
 
     }
 
+    /**
+     * First method that runs when the corresponding fxml file is loaded.
+     */
     @FXML
     private void initialize(){
         changeButton.setOnKeyPressed(e -> {
@@ -54,11 +64,12 @@ public class ChangeMAccountDetailsController extends Controller{
         });
     }
 
-    public void setMasterAccount(MasterAccount currentAccount){
-        this.currentMasterAccount = currentAccount;
-        this.usernameField.setText(currentAccount.getUsername());
-        this.passwordField.setText(currentAccount.getPassword());
-        this.confirmPasswordField.setText(currentAccount.getPassword());
+    public void setMasterAccount(MasterAccount ma){
+        this.ma = ma;
+
+        usernameField.setText(this.ma.getUsername());
+        passwordField.setText(this.ma.getPassword());
+        confirmPasswordField.setText(this.ma.getPassword());
     }
 
     public void setStage(Stage stage){

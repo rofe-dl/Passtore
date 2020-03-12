@@ -4,11 +4,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import model.Account;
+import model.*;
 import util.*;
 
+/**
+ * Controller for editing account details.
+ */
 public class EditAccountDetailsController extends Controller {
-    private Account account;
+    /**
+     * The master account this account belongs to.
+     */
+    private MasterAccount ma;
+    /**
+     * The account that is being edited
+     */
+    private Account a;
+    
     private Stage stage;
 
     @FXML
@@ -22,6 +33,9 @@ public class EditAccountDetailsController extends Controller {
     @FXML
     private TextField password;
 
+    /**
+     * First method that runs when the corresponding fxml file is loaded.
+     */
     @FXML
     private void initialize(){
         editButton.setOnKeyPressed(e -> {
@@ -39,22 +53,31 @@ public class EditAccountDetailsController extends Controller {
             return;
         }
 
-        String newSite = this.site.getText();
-        String newEmail = this.email.getText();
-        String newUsername = this.username.getText();
-        String newPassword = this.password.getText();
+        String newSite = site.getText().trim();
+        String newEmail = email.getText().trim();
+        String newUsername = username.getText().trim();
+        String newPassword = password.getText().trim();
 
-        Updater.updateAccount(this.account, newSite, newEmail, newUsername, newPassword);
-        this.stage.close();
+        if (AccountChecker.checkSiteExists(newSite, ma) && !this.a.getSite().equals(newSite)){
+            DialogBox.showError("Account of this site already exists, please change site name", "Account Exists");
+        }else{
+            Updater.updateAccount(this.ma, this.a, newSite, newEmail, newUsername, newPassword);
+            this.stage.close();
+        }
+
     }
 
     public void setAccount(Account account){
-        this.account = account;
+        this.a = account;
 
-        this.site.setText(this.account.getSite());
-        this.email.setText(this.account.getEmail());
-        this.username.setText(this.account.getUsername());
-        this.password.setText(this.account.getPassword());
+        site.setText(this.a.getSite());
+        email.setText(this.a.getEmail());
+        username.setText(this.a.getUsername());
+        password.setText(this.a.getPassword());
+    }
+
+    public void setMasterAccount(MasterAccount ma){
+        this.ma = ma;
     }
 
     public void setStage(Stage stage){

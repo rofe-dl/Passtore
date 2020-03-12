@@ -6,7 +6,10 @@ import javafx.scene.image.Image;
 import javafx.stage.*;
 import java.util.Optional;
 
-/** class that can show a dialog box with any message **/
+/**
+ * Class made to show small dialog box with any message and title,
+ * like confirmation boxes or error messages.
+ */
 public class DialogBox {
 
     public static Alert setupBox(String message, String title, AlertType boxType){

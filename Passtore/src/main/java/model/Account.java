@@ -1,11 +1,12 @@
 package model;
 
-import java.io.Serializable;
 import java.lang.Comparable;
 import javafx.beans.property.*;
 
-/** structure of a normal account **/
-public class Account implements Comparable<Account>, Serializable {
+/**
+ * Structure of a normal account
+ */
+public class Account implements Comparable<Account> {
 
     private StringProperty site, email, password, username; 
 

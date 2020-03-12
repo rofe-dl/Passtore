@@ -5,10 +5,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import util.*;
 
-
+/**
+ * Controller for the main welcome screen
+ */
 public class WelcomeController extends Controller{
 
-    /** Items annotated @FXML means the the fxml file can access them**/
     @FXML
     private TextField masterUsernameField;
 
@@ -21,7 +22,9 @@ public class WelcomeController extends Controller{
     @FXML
     private Button signInButton;
 
-    /** First method that gets called when a controller file's respective fxml is loaded **/
+    /**
+     * First method that runs when the corresponding fxml file is loaded.
+     */
     @FXML
     private void initialize(){
         signUpButton.setOnKeyPressed(e -> {
@@ -56,17 +59,17 @@ public class WelcomeController extends Controller{
             
         }
 
-        super.passtoreInstance.showAccount(masterUsernameField.getText().trim());
+        super.passtoreInstance.masterAccountScreen(masterUsernameField.getText().trim());
     }
 
     @FXML
     private void handleSignUpButton(){
-        super.passtoreInstance.masterAccountCreation();
+        super.passtoreInstance.addMasterAccount();
     }
 
     @FXML
     private void handleListOfMasterAccountsButton(){
-        super.passtoreInstance.showAccountListUI();
+        super.passtoreInstance.masterAccountsList();
     }
 
 }
