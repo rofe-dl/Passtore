@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import model.*;
 /**
- * Updates data within the program. Updates both the observable list and within the database
+ * Updates data within the program. Updates both the observable list and the database
  * in each method, thus changing data both on the frontend for the viewer and backend.
  */
 public class Updater {

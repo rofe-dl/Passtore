@@ -53,7 +53,7 @@ public class Passtore extends Application{
     /**
      * Loads the UI from the .fxml file into the global variable loader
      * @param fxmlDir  the directory of the .fxml file to load from
-     * @return         the layout pane obtain from .load() as a Parent
+     * @return         the layout pane obtain from .load() as a Parent, to be downcasted from caller
      */
     private Parent loadFXML(String fxmlDir){
         Parent parent = null;
@@ -91,16 +91,17 @@ public class Passtore extends Application{
      */
     private void showSecondaryWindow(String title, Stage stage, Scene scene){
         stage.setTitle(title);
-        stage.setResizable(false);
+        stage.setResizable(false); //secondary windows never resizable
         stage.setScene(scene);
         stage.getIcons().add(new Image("/view/ico.png"));
 
-        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL); //prevents other windows from receiving input
         stage.showAndWait();
     }
 
     /**
-     * Start method called from the javafx Application class, a new stage passed from there
+     * Start method called from the javafx Application class
+     * @param primaryStage a new stage passed by default from Application class
      */
     @Override
     public void start(Stage primaryStage){
@@ -117,7 +118,7 @@ public class Passtore extends Application{
 
     /**
      * Logs the user into the program and shows their account screen
-     * @param masterUsername 
+     * @param masterUsername the main username of the account owner
      */
     public void showAccount(String masterUsername){
 
@@ -129,8 +130,8 @@ public class Passtore extends Application{
 
         AccountController controller = loader.getController();
         controller.setCurrentAccount(e); //passes the account found
-        controller.setStage(this.workingStage);
-        controller.setProgramInstance(this);
+        controller.setStage(this.workingStage); //sends the current stage so it can be closed from the controller
+        controller.setProgramInstance(this); //sends the instance of the running program so methods in this class can be called
 
         workingStage.setMinHeight(300);
         workingStage.setMinWidth(600);
@@ -138,18 +139,24 @@ public class Passtore extends Application{
 
     }
 
+    /**
+     * Shows the list of master accounts in the database
+     */
     public void showAccountListUI(){
         VBox mainPane = (VBox) loadFXML("/view/AccountList.fxml");
         showSecondaryWindow("Accounts", new Stage(), new Scene(mainPane));
     }
 
-    
+    /**
+     * Change details of a master account, like username or password
+     * @param masterAccount the masteraccount whose details to be changed
+     */
     public void changeMasterAccountDetails(MasterAccount masterAccount){
         VBox mainPane = (VBox) loadFXML("/view/ChangeMasterAccountDetails.fxml");
         Stage stage = new Stage();
 
         ChangeMAccountDetailsController controller = loader.getController();
-        controller.setStage(stage); //makes a controller object and passes it the stage so it's stage.close() method can be called there
+        controller.setStage(stage); //sends the stage so it can be closed from the controller
         controller.setMasterAccount(masterAccount); 
 
         showSecondaryWindow("Change Details", stage, new Scene(mainPane));
