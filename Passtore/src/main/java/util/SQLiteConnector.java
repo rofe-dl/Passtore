@@ -9,7 +9,7 @@ public class SQLiteConnector{
 
     public static void connect(){
         if (System.getProperty("os.name").equals("Linux")) url = "jdbc:sqlite:" + System.getProperty("user.home") + "/passtoresavedata.db";
-        else url = "jdbc:sqlite:C:/passtoresavedata.db";
+        else url = "jdbc:sqlite:C:\\Users\\" + System.getProperty("user.name") + "\\passtoresavedata.db";
 
         try{
             Class.forName("org.sqlite.JDBC");
