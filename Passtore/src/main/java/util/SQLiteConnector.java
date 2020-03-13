@@ -7,6 +7,9 @@ import model.*;
  * Class used to connect to the database.
  */
 public class SQLiteConnector{
+    /**
+     * Object that maintains the connection with the db
+     */
     private static Connection conn;
     
     /**
@@ -25,8 +28,14 @@ public class SQLiteConnector{
         else url = "jdbc:sqlite:C:\\Users\\" + System.getProperty("user.name") + "\\passtoresavedata.db";
 
         try{
-            Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection(url);
+            /* This loads the static initializer (static block) of the JDBC class 
+            that registers itself to the DriverManager class of Java so the driver
+            is registered. The JDBC class is in org.sqlite package of the JAR that
+            maven has downloaded and added to the classpath*/
+
+            Class.forName("org.sqlite.JDBC"); 
+
+            conn = DriverManager.getConnection(url); //establishes connection
 
             createTables();
         }catch (Exception e){
