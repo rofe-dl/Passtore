@@ -37,6 +37,11 @@ public class Passtore extends Application{
      */
     private FXMLLoader loader;
 
+    /**
+     * Icon of the program
+     */
+    private Image icon = new Image("/view/ico.png");
+
 
     /**
      * Calls launch(args) method in Application class, which creates an instance of 
@@ -84,7 +89,7 @@ public class Passtore extends Application{
         this.workingStage.setTitle(title);
         this.workingStage.setResizable(resize);
         this.workingStage.setScene(this.workingScene);
-        this.workingStage.getIcons().add(new Image("/view/ico.png"));
+        this.workingStage.getIcons().add(this.icon);
 
         this.workingStage.show();
     }
@@ -100,7 +105,7 @@ public class Passtore extends Application{
         stage.setTitle(title);
         stage.setResizable(false); //secondary windows never resizable
         stage.setScene(scene);
-        stage.getIcons().add(new Image("/view/ico.png"));
+        stage.getIcons().add(this.icon);
 
         stage.initModality(Modality.APPLICATION_MODAL); //prevents other windows from receiving input
         stage.showAndWait();
