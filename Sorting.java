@@ -2,9 +2,10 @@ import java.util.Arrays;
 
 public class Sorting {
     public static void main(String[] args) {
-        int[] a = { 4, -1, 1, 11, 9, 0, 0, 5, 3, 5, 1, -6, -9 };
+        int[] a4 = { 4, -1, 1, 11, 9, 0, 0, 5, 3, 5, 1, -6, -9 };
         int[] a3 = { 98, 2, 3, 1, 0, 0, 0, 3, 98, 98, 2, 2, 2, 0, 0, 0, 2 };
         int[] a2 = { 98, -2, 3, -1, 0, 0, 0, -3, 98, 98, 2, 2, 2, 0, 6, 0, -2 };
+        int[] a = {5, 1, 5, 9, 4, -5, -5, -2, 1, 8, -8, 7, 8, 8, 5, 2, 0, 3, 1, 6 };
 
         insertionSort(a);
         System.out.println(Arrays.toString(a));
