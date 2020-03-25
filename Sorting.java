@@ -73,7 +73,7 @@ public class Sorting {
                 max = Math.abs(a[i]);
         }
 
-        int[] b = new int[max * 2 + 1];
+        int[] b = new int[max * 2 + 1]; 
 
         for (int i = 0; i < a.length; i++) {
             b[a[i] + max]++;
