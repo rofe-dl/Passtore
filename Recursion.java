@@ -2,9 +2,9 @@ import java.util.Arrays;
 
 public class Recursion{
     public static void main(String[] args){
-        System.out.println(p1("Xyz", "And"));
-        System.out.println(p2("xhixhixhihiihHi"));
-        System.out.println(p3(774703));
+        System.out.println(reverseAndMerge("Xyz", "And"));
+        System.out.println(numOfhi("xhixhixhihiihHi"));
+        System.out.println(numOf7(774703));
         
         int[] a = {-1, -1, 0, 4, 7, 8, 9, 11, 14};
         System.out.println(binarySearch(a, 0, 8, 4));
@@ -22,30 +22,32 @@ public class Recursion{
         int[] a2 = {-5, 22, -9, 2, 45, 3, 129, 6, -67, 1, 0, 1, 2, 22, -5};
         insertionSort(a2, a2.length);
         System.out.println(Arrays.toString(a2));
+
+        System.out.println(factorial(4));
         
     } 
 
-    public static String p1(String s1, String s2){
+    public static String reverseAndMerge(String s1, String s2){
         int l = s1.length();
         if(l == 1) return s1 + s2;
 
-        return s1.substring(l - 1) + s2.substring(l - 1) + p1(s1.substring(0, l-1), s2.substring(0, l-1));
+        return s1.substring(l - 1) + s2.substring(l - 1) + reverseAndMerge(s1.substring(0, l-1), s2.substring(0, l-1));
     }
 
-    public static int p2(String s){
+    public static int numOfhi(String s){
         if(s.length() < 2) return 0;
         else if(s.charAt(0) == 'h' && s.charAt(1) == 'i'){
-            return 1 + p2(s.substring(1));
+            return 1 + numOfhi(s.substring(1));
         } 
 
-        return p2(s.substring(1));
+        return numOfhi(s.substring(1));
     }
 
-    public static int p3(int n){
+    public static int numOf7(int n){
         if(n == 0) return 0;
-        else if(n % 10 == 7) return 1 + p3(n/10);
+        else if(n % 10 == 7) return 1 + numOf7(n/10);
 
-        return p3(n/10);
+        return numOf7(n/10);
     }
 
     public static int binarySearch(int[] a, int l, int h, int val){
@@ -88,4 +90,21 @@ public class Recursion{
             if (n.next != null) printOddPos(n.next.next);
         }
     }
+
+    public static int factorial(int n){
+        if(n <= 0) return 1;
+
+        return n * factorial(n - 1);
+    }
+
+    public static int nthFib(int n){
+        if (n == 1)
+            return 0;
+        else if (n == 2)
+            return 1;
+        else
+            return nthFib(n - 1) + nthFib(n - 2);
+    }
+
+    public 
 }
