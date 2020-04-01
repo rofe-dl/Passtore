@@ -1,5 +1,22 @@
 import java.util.Arrays;
 
+class Node{
+    
+    Node next, prev;
+    int value;
+
+    public Node(int value, Node next){
+        this.value = value;
+        this.next = next;
+    }
+
+    public Node(int value, Node next, Node prev){
+        this.value = value;
+        this.next = next;
+        this.prev = prev;
+    }
+}
+
 public class Recursion{
     public static void main(String[] args){
         System.out.println(reverseAndMerge("Xyz", "And"));
@@ -23,8 +40,10 @@ public class Recursion{
         insertionSort(a2, a2.length);
         System.out.println(Arrays.toString(a2));
 
-        System.out.println(factorial(4));
-        
+        System.out.println(factorial(5));
+        System.out.println(nthFib(6));
+        System.out.println(intToBinary(17));
+        System.out.println(pow(3, 3));
     } 
 
     public static String reverseAndMerge(String s1, String s2){
@@ -80,18 +99,18 @@ public class Recursion{
     public static int evenSum(Node n){
         if (n == null) return 0;
 
-        if(n.element % 2 == 0) return n.element + evenSum(n.next);
+        if(n.value % 2 == 0) return n.value + evenSum(n.next);
         return evenSum(n.next);
     }
 
     public static void printOddPos(Node n){
         if (n != null){
-            System.out.print(n.element + " ");
+            System.out.print(n.value + " ");
             if (n.next != null) printOddPos(n.next.next);
         }
     }
 
-    public static int factorial(int n){
+    public static long factorial(long n){
         if(n <= 0) return 1;
 
         return n * factorial(n - 1);
@@ -106,5 +125,15 @@ public class Recursion{
             return nthFib(n - 1) + nthFib(n - 2);
     }
 
-    public 
+    public static String intToBinary(int n){
+        if (n == 1) return "1";
+        else if (n == 0) return "0";
+
+        return "" + intToBinary(n / 2) + n % 2; 
+    } 
+
+    public static long pow(int m, int n){
+        if (n == 0) return 1;
+        return m * pow(m, n - 1);
+    }
 }
