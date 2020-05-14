@@ -1,2 +1,6 @@
 Passtore/.idea/workspace.xml
 *.class
+.project
+.classpath
+.settings
+.vscode
