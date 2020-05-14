@@ -125,7 +125,7 @@ public class Passtore extends Application{
         WelcomeController controller = loader.getController();
         controller.setProgramInstance(this); //sends an instance of the main program to call methods of this class
 
-        showPrimaryWindow("Passtore", false);
+        showPrimaryWindow("Passtore", true);
     }
 
     /**
